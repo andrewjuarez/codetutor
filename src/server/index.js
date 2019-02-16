@@ -1,25 +1,39 @@
 // Import Depencies
-const express = require('express');
-const mongoose = require("mongoose");
-const os = require('os');
-const body_parser = require("body-parser");
-const request = require('request')
+import express from 'express';
+import internalIp from 'internal-ip';
+import logger from 'morgan';
+import bodyParser from 'body-parser';
+import session from 'express-session';
+import request from 'request';
 
+// Import from Files
+import { mongoose } from './models/models';
+import { sessionSecret } from '../../private/secrets';
+import routes from './api/routes';
+
+// Sessions for Cookies
+const MongoStore = require('connect-mongo')(session);
 const app = express();
 
+// Middleware
+app.set('trust proxy', 1)
+app.use(logger('dev'));
 app.use(express.static('dist'));
-app.use(body_parser.json({ type: "*/*" }));
+app.use(bodyParser.json({ type: "*/*" }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({
+  name: 'ctCookie',
+  secret: sessionSecret,
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  resave: true,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
 
+// API Routes
+app.use('/', routes);
 
-// Connect to Mongo
-// Imported from a private directory to keep hidden from Github.
-const mongoURL = require("../../private/dbcon");
-mongoose.connect(mongoURL, {useNewUrlParser: true});
-
-// Import api routes
-const sessionAPIroutes = require("./api/session");
-app.use(sessionAPIroutes);
-
+<<<<<<< HEAD
 app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));
 
 function compile(s, l, vI) {
@@ -50,3 +64,8 @@ function isError(body) {
     }
     return false;
 }
+=======
+// Start Listening on Server
+const port = process.env.PORT || 8080;
+app.listen(port, () => console.log(`Server running at http://${internalIp.v4.sync()}:${port}/`));
+>>>>>>> 0b0b07bdea8dc18a7f3e960dbab8367824df00cd
