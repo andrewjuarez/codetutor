@@ -3,12 +3,16 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import Navbar from './Navbar';
 
 import Background from '../bg.png';
 
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import axios from 'axios';
+import "bootstrap/dist/css/bootstrap.min.css";
+import color from '@material-ui/core/colors/blue';
+
 
 const styles = theme => ({
   button: {
@@ -20,62 +24,78 @@ const styles = theme => ({
 class CreateSession extends Component {
   constructor(props) {
       super(props);
-      this.state = { 
-          description: '',
-          sessionID: ''
+      this.state = {
+          sessionID: '', 
+          sessionName: '',
+          mailingList: '',
+          problem: '',
         };
 
-      this.handleChange = this.handleChange.bind(this);
+      this.handleSessionName = this.handleSessionName.bind(this);
+      this.handleMailingList = this.handleMailingList.bind(this);
+      this.handleProblem = this.handleProblem.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-        this.setState({description: event.target.value});
+  handleSessionName(event) {
+    this.setState({sessionName: event.target.value});
   } 
 
+  handleMailingList(event) {
+    this.setState({mailingList: event.target.value});
+} 
 
+handleProblem(event) {
+  this.setState({problem: event.target.value});
+} 
 
   handleSubmit = (event) => {
       
       event.preventDefault();
 
       var data = {
-        description: this.state.description
+        sessionName: this.state.sessionName,
+        mailingList: this.state.mailingList,
+        problem: this.state.problem
       }
       axios.post("/api/new-session", data)
         .then((result) => {
             console.log("API return data!");
             console.log(result);
-
-
-            this.setState({sessionID: result.data["sessionID"]});
+            
+            this.setState({sessionID: result.data["sessionID"]})
+            this.setState({sessionName: result.data["sessionName"]});
+            this.setState({mailingList: result.data["mailingList"]});
+            this.setState({problem: result.data["problem"]});
         })
   }
 
 
   render() {
-    if(this.state.sessionID == "") {
+    if(this.state.sessionID === "") {
         return (
-        <Grid container style={{ height: '100%', border: 'blue solid 4px' }}>
-          <Grid item style={{ position: 'absolute', width: '100%', border: 'yellow solid 4px' }}>
-            <Navbar />
-          </Grid>
-          <Grid container style={{ border: 'red solid 4px', backgroundImage: `url(${Background})`, backgroundSize: 'cover' }} justify="center" alignItems="center">
-            <Grid container justify="center" style={{ height: '10%' }}>
-              <Grid item xs={4}>
-                <div style={{backgroundColor: "white"}}>
-                    <h4>Description</h4>
-                    <form onSubmit={this.handleSubmit}>
-                        <input type="text" value={this.state.description} onChange={this.handleChange} placeholder="In lab assignment."/>
-                        
-                        <input type="submit" value="Create Session" />
-                    </form>
-                </div>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-        );
+        <div style={{backgroundColor: "white", height: "100%", width: "100%"}}>
+          <h1 style={{textAlign: "center", color: "#3F51B5", fontSize: 60 }}> Create Session </h1>
+          <div className="container">
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-group">
+                <TextField id="outlined-name" label="Session Name" defaultValue="In-Lab Assignment" value={this.state.sessionName} onChange={this.handleSessionName} margin="normal"
+                variant="outlined"/>
+              </div>
+              <div className="form-group">
+                <TextField multiline="true" id="outlined-name" label="Mailing List" defaultValue="In-Lab Assignment" value={this.state.mailingList} onChange={this.handleMailingList} margin="normal"
+                variant="outlined"/>
+              </div>
+              <div className="form-group">
+                <TextField multiline="true" id="outlined-name" label="Problem" defaultValue="In-Lab Assignment" value={this.state.problem} onChange={this.handleProblem} margin="normal"
+                variant="outlined"/>
+              </div>
+              <div className="form-group">
+                  <Button><input type="submit" value="Create Session"/></Button>
+              </div>
+            </form>
+          </div>
+        </div>)
     } else {
         return (
             <Grid container style={{ height: '100%', border: 'blue solid 4px' }}>
