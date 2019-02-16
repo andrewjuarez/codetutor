@@ -9,6 +9,7 @@ import Navbar from './Components/Navbar';
 import Background from './bg.png';
 
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import axios from 'axios';
 
 const styles = theme => ({
   button: {
@@ -24,6 +25,12 @@ class App extends Component {
     console.log('TEST');
   }
 
+  submitTest = () => {
+    console.log("submitTest called!");
+    
+    
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -35,7 +42,7 @@ class App extends Component {
           <Grid container style={{ border: 'red solid 4px', backgroundImage: `url(${Background})`, backgroundSize: 'cover' }} justify="center" alignItems="center">
             <Grid container justify="center" style={{ height: '10%' }}>
               <Grid item xs={4}>
-                <Button fullWidth variant="contained" color="primary" size="large" className={classes.button} style={{ fontSize: 30 }}>
+                <Button fullWidth variant="contained" color="primary" size="large" className={classes.button} style={{ fontSize: 30 }} onClick={this.submitTest}>
                   New Session
                 </Button>
                 <Grid style={{ display: 'flex', flexDirection: 'row', color: 'white' }}>
