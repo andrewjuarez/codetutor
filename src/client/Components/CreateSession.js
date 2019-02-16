@@ -45,13 +45,10 @@ class CreateSession extends Component {
     this.setState({mailingList: event.target.value});
 } 
 
-<<<<<<< HEAD
 handleProblem(event) {
   this.setState({problem: event.target.value});
 } 
 
-=======
->>>>>>> 0b0b07bdea8dc18a7f3e960dbab8367824df00cd
   handleSubmit = (event) => {
       
       event.preventDefault();
