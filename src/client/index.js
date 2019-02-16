@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, browserHistory} from 'react-router-dom';
 
 //Components
 import StudentEditor from './Components/StudentEditor'
@@ -29,11 +29,11 @@ const theme = createMuiTheme({
 
 function AppWithTheme() {
   return (
-      <Router>
-        <div>
-            <Route exact path = '/' component = {App} />
+      <Router history={browserHistory}>
+        <MuiThemeProvider>
+            <Route exact path = {'/'} component = {App} />
             <Route path = '/student2' component = {StudentEditor} />
-        </div>        
+        </MuiThemeProvider>        
       </Router>
     
   );
