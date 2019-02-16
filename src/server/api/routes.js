@@ -1,8 +1,14 @@
 import express from 'express';
-import uniqid from 'uniqid';
+import shortid from 'shortid';
+import sgMail from '@sendgrid/mail';
 
 // Import Models
-import { Session, Submission } from '../models/models.js';
+import { Session, Submission } from '../models/models';
+
+// For SendGrid API
+import { sendGridAPIKey } from '../../../private/secrets';
+
+sgMail.setApiKey(sendGridAPIKey);
 
 const router = express.Router();
 
@@ -10,7 +16,7 @@ const router = express.Router();
 
 // POST request for new session (tutor)
 router.post('/api/new-session', (req, res) => {
-  const sessionID = uniqid();
+  const sessionID = shortid().slice(0,5);
   req.session.ssid = sessionID; // Remember the session ID for tutor!
   new Session({
     id: sessionID,
@@ -18,7 +24,20 @@ router.post('/api/new-session', (req, res) => {
     submissions: []
   })
   .save()
-  .then(() => res.json({ success: true }))
+  .then(() => {
+    if (Array.isArray(req.body.emails) && req.body.emails.length !== 0) {
+      req.body.emails.forEach(email => {
+        sgMail.send({
+          to: `${email}`,
+          from: 'kevinnguyen125@gmail.com',
+          subject: '😆 CodeTutor Invitation 😆',
+          text: 'Learn Code. Breathe Code. Be Code.',
+          html: `<strong>Invitation Link: <a>http://codetutor.tech/${sessionID}</a></strong>`,
+        });
+      });
+    }
+    res.json({ success: true });
+  })
   .catch(err => res.json({ success: false, error: err }));
 });
 
