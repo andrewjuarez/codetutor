@@ -112,7 +112,7 @@ export default class StudentEditor extends Component{
             console.log(res.data);
         })
 
-         //JDoodle Online Compiler
+        //JDoodle Online Compiler
         
          // var _dataMode = ''
         // if (this.state.value == 'python'){

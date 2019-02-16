@@ -34,7 +34,6 @@ class CreateSession extends Component {
   } 
 
 
-
   handleSubmit = (event) => {
       
       event.preventDefault();
@@ -64,12 +63,14 @@ class CreateSession extends Component {
             <Grid container justify="center" style={{ height: '10%' }}>
               <Grid item xs={4}>
                 <div style={{backgroundColor: "white"}}>
-                    <h4>Description</h4>
+                    <h4>Create Session</h4>
+
                     <form onSubmit={this.handleSubmit}>
-                        <input type="text" value={this.state.description} onChange={this.handleChange} placeholder="In lab assignment."/>
+                        <input type="text" value={this.state.description} onChange={this.handleChange} placeholder="Enter lab assignment."/>
                         
                         <input type="submit" value="Create Session" />
                     </form>
+               
                 </div>
               </Grid>
             </Grid>
