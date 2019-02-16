@@ -33,7 +33,6 @@ app.use(session({
 // API Routes
 app.use('/', routes);
 
-<<<<<<< HEAD
 app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));
 
 function compile(s, l, vI) {
@@ -64,8 +63,6 @@ function isError(body) {
     }
     return false;
 }
-=======
 // Start Listening on Server
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Server running at http://${internalIp.v4.sync()}:${port}/`));
->>>>>>> 0b0b07bdea8dc18a7f3e960dbab8367824df00cd

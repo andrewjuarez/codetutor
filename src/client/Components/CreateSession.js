@@ -10,7 +10,6 @@ import Background from '../bg.png';
 
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import axios from 'axios';
-import "bootstrap/dist/css/bootstrap.min.css";
 import color from '@material-ui/core/colors/blue';
 
 
