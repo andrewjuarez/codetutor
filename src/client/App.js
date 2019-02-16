@@ -21,10 +21,6 @@ const styles = theme => ({
 class App extends Component {
   state = {};
 
-  componentDidMount() {
-    console.log('TEST');
-  }
-
   submitTest = () => {
     console.log("submitTest called!");
     
@@ -42,9 +38,9 @@ class App extends Component {
           <Grid container style={{ border: 'red solid 4px', backgroundImage: `url(${Background})`, backgroundSize: 'cover' }} justify="center" alignItems="center">
             <Grid container justify="center" style={{ height: '10%' }}>
               <Grid item xs={4}>
-                <Button fullWidth variant="contained" color="primary" size="large" className={classes.button} style={{ fontSize: 30 }} onClick={this.submitTest}>
+                <a href="/create-session" ><Button fullWidth variant="contained" color="primary" size="large" className={classes.button} style={{ fontSize: 30 }} onClick={this.submitTest}>
                   New Session
-                </Button>
+                </Button></a>
                 <Grid style={{ display: 'flex', flexDirection: 'row', color: 'white' }}>
                   <hr style={{ width: 150, weight: 10 }} />
                     OR

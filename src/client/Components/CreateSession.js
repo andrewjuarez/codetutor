@@ -30,15 +30,12 @@ class CreateSession extends Component {
   }
 
   handleChange(event) {
-      this.setState({description: event.target.value});
-  }
+        this.setState({description: event.target.value});
+  } 
 
-  updateSessionID(sessionID){
-      console.log("hello", sessionID);
-      this.setState({sessionID: sessionID});
-  }
 
-  handleSubmit(event) {
+
+  handleSubmit = (event) => {
       
       event.preventDefault();
 
@@ -46,11 +43,12 @@ class CreateSession extends Component {
         description: this.state.description
       }
       axios.post("/api/new-session", data)
-        .then(function(result) {
+        .then((result) => {
             console.log("API return data!");
-            
-            // I'm trying to pass that sessionID into the state.
-            updateSessionID(result.data["sessionID"]);
+            console.log(result);
+
+
+            this.setState({sessionID: result.data["sessionID"]});
         })
   }
 
