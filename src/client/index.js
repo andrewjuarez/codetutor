@@ -30,10 +30,10 @@ const theme = createMuiTheme({
 function AppWithTheme() {
   return (
       <Router>
-        <MuiThemeProvider theme={theme}>
-            <Route path = '/' component = {App} />
+        <div>
+            <Route exact path = '/' component = {App} />
             <Route path = '/student2' component = {StudentEditor} />
-        </MuiThemeProvider>        
+        </div>        
       </Router>
     
   );
