@@ -9,7 +9,6 @@ const app = express();
 
 app.use(express.static('dist'));
 app.use(body_parser.json({ type: "*/*" }));
-app.get('/api/getUsername', (req, res) => res.send({ username: os.userInfo().username }));
 
 
 // Connect to Mongo
