@@ -15,7 +15,8 @@ export default class App extends Component {
     const { username } = this.state;
     return (
       <div>
-        {username ? <h1>{`Hello ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
+        {<h1>Welcome to Code Tutor</h1>}
+        <p>Code tutor was built for the programming classes!</p>
         <img src={ReactImage} alt="react" />
       </div>
     );
