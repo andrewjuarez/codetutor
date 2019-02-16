@@ -15,7 +15,7 @@ const MongoStore = require('connect-mongo')(session);
 const app = express();
 
 // Middleware
-app.set('trust proxy', 1)
+app.set('trust proxy', 1);
 app.use(logger('dev'));
 app.use(express.static('dist'));
 app.use(bodyParser.json({ type: "*/*" }));
