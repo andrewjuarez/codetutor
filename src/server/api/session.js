@@ -1,26 +1,26 @@
-var express = require("express");
-var router = express.Router();
+import express from 'express';
+
+const router = express.Router();
 
 // Import Session model
-var Session = require("../models/session")
+const Session = require('../models/session');
 
 function generateID() {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  
-    for (var i = 0; i < 5; i++)
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
-  
-    return text;
+  let text = '';
+  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+  for (let i = 0; i < 5; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
 }
-  
-  
+
 
 router.post("/api/new-session", function(req, res){
     console.log("POST: /api/new-session");
     console.log(req.body)
     var sessionDesc = req.body.description;
-    
+
 
     // Generate a new session id
     var sessionID = generateID();
@@ -31,7 +31,7 @@ router.post("/api/new-session", function(req, res){
         id: sessionID
     }, function(err, foundSession) {
         console.log("Performed find.");
-        
+
         if(err){
             console.log("ERROR: Finding session with id: " + sessionID)
         } else if(!foundSession.length) {
@@ -39,9 +39,9 @@ router.post("/api/new-session", function(req, res){
             Session.create({
                 id: sessionID,
                 desc: sessionDesc
-        
+
             }, function(err, session) {
-                
+
                 if(err){
                     console.log("ERROR: Unable to add session to DB.");
                 } else if(session) {
@@ -51,7 +51,7 @@ router.post("/api/new-session", function(req, res){
             })
         }
     });
-    
+
     res.send({sessionID: sessionID, desciption: sessionDesc});
 });
 
