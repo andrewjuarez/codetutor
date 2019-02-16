@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "npm run build && node src/server/index.js",
-    "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
+    "client": "webpack-dev-server --mode development --devtool inline-source-map --hot --history-api-fallback",
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
@@ -15,13 +15,15 @@
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
+    "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "material-ui": "^0.20.2",
-    "prop-types": "^15.7.2",
     "mongoose": "^5.4.13",
+    "prop-types": "^15.7.2",
     "react": "^16.5.2",
+    "react-ace": "^6.4.0",
     "react-dom": "^16.5.2",
     "react-router-dom": "^4.3.1"
   },
