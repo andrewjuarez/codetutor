@@ -32,22 +32,22 @@ class FormDialog extends React.Component {
     console.log(this.state.Name )
 
     var data = {
-      classCode: this.state.ClassCode,
-      studName: this.state.Name
+      sessionID: this.state.ClassCode,
+      name: this.state.Name
     }
-
-    axios.post("/api/new-session", data)
+    console.log(data)
+    axios.post("/api/join-session", data)
         .then((result) => {
             console.log("API return data!");
-            console.log(result);
-        })
+            console.log(result.data);
 
-    // if result.thing worked{
-    //   redirect to text editor page with given session ID
-    // }
-      if (true) {
-        this.routeChange('/1234')
-      }
+            if(result.data['status'] == "success"){
+              console.log("Re-directing to IDE")
+              this.routeChange('/1234')
+            } else {
+              console.log("Permission denied.");
+            }
+        })
 
     this.setState({ open: false });
   };

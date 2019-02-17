@@ -7,6 +7,7 @@ import { Session, Submission } from '../models/models';
 
 // For SendGrid API
 import { sendGridAPIKey } from '../../../private/secrets';
+import { isBuffer } from 'util';
 
 sgMail.setApiKey(sendGridAPIKey);
 
@@ -88,6 +89,26 @@ router.get('/api/all-submissions', (req, res) => {
   .exec()
   .then(({ submissions }) => res.json({ success: true, submissions }))
   .catch(err => res.json({ success: false, error: err }));
+});
+
+// Request for a student to join a session
+router.post('/api/join-session', (req, res) => {
+  console.log("POST: '/api/join-session'");
+  console.log(req.body);
+
+  Session.findOne({
+    id: req.body.sessionID
+  }, function(err, session){
+    if(err){
+      console.log("ERROR: /api/join-submission")
+      res.json({status: "failure"})
+    } else if(!!session) {
+      console.log("Session found by ID");
+      console.log(session);
+      res.json({status: "success"})
+    }
+  });
+
 });
 
 export default router;
