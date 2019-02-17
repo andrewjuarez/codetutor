@@ -9,7 +9,8 @@ mongoose.connect(mongoURL, { useNewUrlParser: true });
 // Session Schema
 const sessionSchema = new mongoose.Schema({
     id: String,
-    desc: String,
+    name: String,
+    description: String,
     submissions: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Submission',

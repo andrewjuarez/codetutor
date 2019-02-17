@@ -136,10 +136,12 @@ createSubmissionsTableBody = (students) => {
       event.preventDefault();
 
       var data = {
-        sessionName: this.state.sessionName,
-        mailingList: this.state.mailingList,
-        problem: this.state.problem
+        name: this.state.sessionName,
+        emails: this.state.mailingList,
+        description: this.state.problem
       }
+      console.log("Sending to /api/new-session ");
+      console.log(data);
       axios.post("/api/new-session", data)
         .then((result) => {
             console.log("API return data!");
@@ -174,7 +176,7 @@ createSubmissionsTableBody = (students) => {
                 variant="outlined" style={{width: '45%', height: '25%'}}/>
               </div>
               <div className="form-group">
-                <TextField multiline="true" id="outlined-name" label="Problem" defaultValue="In-Lab Assignment" value={this.state.problem} onChange={this.handleProblem} margin="normal"
+                <TextField multiline="true" id="outlined-name" label="Description" defaultValue="In-Lab Assignment" value={this.state.problem} onChange={this.handleProblem} margin="normal"
                 variant="outlined" style={{width: '45%', height: '20%'}}/>
               </div>
               <div className="form-group">
@@ -187,6 +189,8 @@ createSubmissionsTableBody = (students) => {
         return (
             <div>
               <div>
+                <h2>Session Created: { this.state.sessionName }</h2>
+                <p>Instruct your students to use the following code to join!</p>
                 <h1 style={{textAlign: "center", color: "#3F51B5", fontSize: 60, fontFamily: 'Roboto', marginTop: '7.5%'}}>
                   Code: {this.state.sessionID}
                 </h1>
