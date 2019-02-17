@@ -104,13 +104,17 @@ themes.forEach(theme => {
   require(`brace/theme/${theme}`);
 });
 
-const defaultValue = 'Enter Code Here';
+let defaultValue = 'Enter Code Here';  
 
 export default class StudentEditor extends Component{
+    
+  
     state = {
       snackbarSuccess: false,
       snackbarError: false
     }
+
+    
 
     onClose() {
       this.setState({
@@ -192,6 +196,25 @@ export default class StudentEditor extends Component{
         })
 
       }
+
+      componentWillMount() {
+        
+        axios.post("/api/get-prompt", {id: this.state.sessionID})
+          .then((result) => {
+            console.log("making API call /api/get-prompt");
+            console.log(result);
+            if(result.data["status"] == "success"){
+              console.log("Status is success!");
+              // this.state.value = result.data["prompt"];
+              this.setState({value: result.data["prompt"]})
+              console.log("Updated value: ", this.state.value)
+            }
+          })
+        
+        
+      }
+
+      
     
       constructor(props) {
         super(props);

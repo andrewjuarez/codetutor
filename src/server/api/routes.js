@@ -81,7 +81,7 @@ router.post('/api/new-session', (req, res) => {
 router.post('/api/new-submission', (req, res) => {
   const submission = new Submission({
     sessionID: req.body.sessionID,
-    name: req.body.name,
+    submitter: req.body.name,
     code: req.body.code
   });
   req.session.ssid = req.body.sessionID // Remember the session ID for the student!
@@ -129,7 +129,7 @@ router.get('/api/submission/:submissionID', (req, res) => {
 // GET request for a list of submissions, including their name & state (tutor)
 router.get('/api/all-submissions', (req, res) => {
   Session.findOne({ id: req.session.ssid })
-  .populate('submissions', 'name state')
+  .populate('submissions', 'submitter state')
   .exec()
   .then(({ submissions }) => res.json({ success: true, submissions }))
   .catch(err => res.json({ success: false, error: err }));
