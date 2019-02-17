@@ -140,10 +140,10 @@ export default class StudentEditor extends Component{
 
     render() {
     return (
-        <div style={{display: 'flex',  justifyContent:'left', alignItems:'left', height: '50vh'}}>
+        <div style={{display: 'flex',  justifyContent:'left', alignItems:'left', height: '50vh', margin: '30px'}}>
           <div className="column">
               <div className="field">
-                <Typography variant="subtitle1" gutterBottom>
+                <Typography variant="h5" gutterBottom>
                   Language
                 </Typography>
                 <p className="control">
@@ -160,7 +160,7 @@ export default class StudentEditor extends Component{
               </div>
 
               <div className="field">
-                <Typography variant="subtitle1" gutterBottom>
+                <Typography variant="h5" gutterBottom>
                   Font
                 </Typography>
               <p className="control">
@@ -177,7 +177,7 @@ export default class StudentEditor extends Component{
               </div>
 
               <div className="field">
-                <Typography variant="subtitle1" gutterBottom>
+                <Typography variant="h5" gutterBottom>
                   Font Size
                 </Typography>
               <p className="control">
@@ -194,91 +194,91 @@ export default class StudentEditor extends Component{
               </div>
               <div className="field">
               <p className="control">
-                  <label className="checkbox">
+                  <Typography className="checkbox">
                   <input
                       type="checkbox"
                       checked={this.state.enableBasicAutocompletion}
                       onChange={e => this.setBoolean('enableBasicAutocompletion', e.target.checked)}
                   />
                   Enable Basic Autocomplete
-                  </label>
+                  </Typography>
               </p>
               </div>
               <div className="field">
               <p className="control">
-                  <label className="checkbox">
+                  <Typography className="checkbox">
                   <input
                       type="checkbox"
                       checked={this.state.enableLiveAutocompletion}
                       onChange={e => this.setBoolean('enableLiveAutocompletion', e.target.checked)}
                   />
                   Enable Live Autocomplete
-                  </label>
+                  </Typography>
               </p>
               </div>
               <div className="field">
               <p className="control">
-                  <label className="checkbox">
+                  <Typography className ="checkbox">
                   <input
                       type="checkbox"
                       checked={this.state.showGutter}
                       onChange={e => this.setBoolean('showGutter', e.target.checked)}
                   />
                   Show Gutter
-                  </label>
+                  </Typography>
               </p>
               </div>
               <div className="field">
               <p className="control">
-                  <label className="checkbox">
+                  <Typography className="checkbox">
                   <input
                       type="checkbox"
                       checked={this.state.showPrintMargin}
                       onChange={e => this.setBoolean('showPrintMargin', e.target.checked)}
                   />
                   Show Print Margin
-                  </label>
+                  </Typography>
               </p>
               </div>
               <div className="field">
               <p className="control">
-                  <label className="checkbox">
+                  <Typography className="checkbox">
                   <input
                       type="checkbox"
                       checked={this.state.highlightActiveLine}
                       onChange={e => this.setBoolean('highlightActiveLine', e.target.checked)}
                   />
                   Highlight Active Line
-                  </label>
+                  </Typography>
               </p>
               </div>
               <div className="field">
               <p className="control">
-                  <label className="checkbox">
+                  <Typography className="checkbox">
                   <input
                       type="checkbox"
                       checked={this.state.enableSnippets}
                       onChange={e => this.setBoolean('enableSnippets', e.target.checked)}
                   />
                   Enable Snippets
-                  </label>
+                  </Typography>
               </p>
               </div>
               <div className="field">
               <p className="control">
-                  <label className="checkbox">
+                  <Typography className="checkbox">
                   <input
                       type="checkbox"
                       checked={this.state.showLineNumbers}
                       onChange={e => this.setBoolean('showLineNumbers', e.target.checked)}
                   />
                   Show Line Numbers
-                  </label>
+                  </Typography>
               </p>
               </div>
               <Button variant = 'contained' color = 'primary' onClick = {this.submitCode}>Submit Code</Button>
           </div>
-          <div style={{justifyContent:'right', alignItems:'right'}}>
+          <div style={{justifyContent:'center', alignItems:'center', marginLeft: '51.75%'}}>
               <AceEditor
               mode={this.state.mode}
               theme={this.state.theme}
@@ -303,35 +303,6 @@ export default class StudentEditor extends Component{
               />
           </div>
           
-         
-
-          {/* <div className="column">
-              <h2>Code</h2>
-              <AceEditor
-              mode="jsx"
-              theme="monokai"
-              readOnly={true}
-              value={`<AceEditor
-      mode="${this.state.mode}"
-      theme="${this.state.theme}"
-      name="blah2"
-      onLoad={this.onLoad}
-      onChange={this.onChange}
-      fontSize={${this.state.fontSize}}
-      showPrintMargin={${this.state.showPrintMargin}}
-      showGutter={${this.state.showGutter}}
-      highlightActiveLine={${this.state.highlightActiveLine}}
-      value={\`${this.state.value}\`}
-      setOptions={{
-      enableBasicAutocompletion: ${this.state.enableBasicAutocompletion},
-      enableLiveAutocompletion: ${this.state.enableLiveAutocompletion},
-      enableSnippets: ${this.state.enableSnippets},
-      showLineNumbers: ${this.state.showLineNumbers},
-      tabSize: 2,
-      }}/>
-              `}
-              />
-          </div> */}
         </div>
         
         )
