@@ -7,8 +7,18 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const theme = createMuiTheme({
     palette: {
-      primary: red,
-      secondary: green,
+      primary: {
+        light: '#ff0000',
+        main: '#ff0000',
+        dark: '#ff0000',
+        contrastText: '#ff0000',
+      },
+      secondary: {
+        light: '#00ff00',
+        main: '#00ff00',
+        dark: '#00ff00',
+        contrastText: '#00ff00',
+      },
     },
   });
 
@@ -25,10 +35,10 @@ export default class Student extends Component{
     render() {
         console.log(this.state.name)
         if (this.state.correct === true) {
-            return <MuiThemeProvider muiTheme={theme}><Chip clickable={true} color="primary" label={this.state.name}></Chip></MuiThemeProvider>
+            return <MuiThemeProvider theme={theme}><Chip clickable={true} color="primary" label={this.state.name} style={{color:"primary"}}></Chip></MuiThemeProvider>
         }
         else {
-            return <MuiThemeProvider muiTheme={theme}><Chip clickable={true} color="secondary" label={this.state.name}></Chip></MuiThemeProvider>
+            return <MuiThemeProvider theme={theme}><Chip clickable={true} color="secondary" label={this.state.name} style={{color:"secondary"}}></Chip></MuiThemeProvider>
         }
         
     }

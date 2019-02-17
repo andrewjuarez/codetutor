@@ -41,12 +41,12 @@ let students = [
     name: 'Homer Simpson',
     correct: false,
     sourceCode: 'print(\'Hello, world!\')'
+  },
+ {
+    name: 'Sahil Railkar',
+    correct: true,
+    sourceCode: 'print(\'Hello, world!\')'
   }]
-//  {
-//     name: 'Sahil Railkar',
-//     correct: false,
-//     sourceCode: 'print(\'Hello, world!\')'
-//   },
 //   {
 //     name: 'Ryan Miranda',
 //     correct: true,
@@ -124,6 +124,9 @@ createSubmissionsTableBody = (students) => {
         children.push(<MuiThemeProvider><TableRowColumn><Student name={students[counter].name} correct={students[counter].correct} sourceCode={students[counter].sourceCode}></Student></TableRowColumn></MuiThemeProvider>)
         counter += 1;
       }
+      else {
+        children.push(<MuiThemeProvider><TableRowColumn></TableRowColumn></MuiThemeProvider>)
+      }
     }
     table.push(<MuiThemeProvider><TableRow>{children}</TableRow></MuiThemeProvider>)
   }
@@ -188,12 +191,16 @@ createSubmissionsTableBody = (students) => {
     } else {
         return (
             <div>
+              <Grid container style={{ height: '100%'}}>
+                <Grid item style={{ position: 'absolute', width: '100%'}}>
+                  <Navbar />
+                </Grid>
+              </Grid>
               <div>
-                <h2>Session Created: { this.state.sessionName }</h2>
-                <p>Instruct your students to use the following code to join!</p>
                 <h1 style={{textAlign: "center", color: "#3F51B5", fontSize: 60, fontFamily: 'Roboto', marginTop: '7.5%'}}>
-                  Code: {this.state.sessionID}
+                  Session ID: {this.state.sessionID}
                 </h1>
+                <h4 style={{textAlign: "center", fontSize: 15, fontFamily: 'Roboto', color:"#01897B"}}>Session Created! Instruct your students to use the code to join.{ this.state.sessionName }</h4>
               </div>
               <hr/>
               <div>
