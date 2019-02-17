@@ -73,24 +73,24 @@ handleProblem(event) {
   render() {
     if(this.state.sessionID === "") {
         return (
-        <div style={{backgroundColor: "white", height: "100%", width: "100%"}}>
-          <h1 style={{textAlign: "center", color: "#3F51B5", fontSize: 60 }}> Create Session </h1>
-          <div className="container">
+        <div>
+          <h1 style={{textAlign: "center", color: "#3F51B5", fontSize: 60, fontFamily: 'Roboto', marginTop: '7.5%'}}> New Session </h1>
+          <div className="container" style={{textAlign: 'center'}}>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <TextField id="outlined-name" label="Session Name" defaultValue="In-Lab Assignment" value={this.state.sessionName} onChange={this.handleSessionName} margin="normal"
+                <TextField id="outlined-name" label="Session Name" defaultValue="In-Lab Assignment" value={this.state.sessionName} onChange={this.handleSessionName} margin="normal" style={{width: '45%'}}
                 variant="outlined"/>
               </div>
               <div className="form-group">
                 <TextField multiline="true" id="outlined-name" label="Mailing List" defaultValue="In-Lab Assignment" value={this.state.mailingList} onChange={this.handleMailingList} margin="normal"
-                variant="outlined"/>
+                variant="outlined" style={{width: '45%', height: '25%'}}/>
               </div>
               <div className="form-group">
                 <TextField multiline="true" id="outlined-name" label="Problem" defaultValue="In-Lab Assignment" value={this.state.problem} onChange={this.handleProblem} margin="normal"
-                variant="outlined"/>
+                variant="outlined" style={{width: '45%', height: '20%'}}/>
               </div>
               <div className="form-group">
-                  <Button><input type="submit" value="Create Session"/></Button>
+                  <Button size="large" color="primary" variant="contained" style={{marginTop: '5%'}}>Create Session</Button>
               </div>
             </form>
           </div>

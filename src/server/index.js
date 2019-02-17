@@ -10,6 +10,7 @@ import request from 'request';
 import { mongoose } from './models/models';
 import { sessionSecret } from '../../private/secrets';
 import routes from './api/routes';
+import { Server } from 'https';
 
 // Sessions for Cookies
 const MongoStore = require('connect-mongo')(session);
@@ -63,6 +64,7 @@ function isError(body) {
     }
     return false;
 }
+
 // Start Listening on Server
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Server running at http://${internalIp.v4.sync()}:${port}/`));
