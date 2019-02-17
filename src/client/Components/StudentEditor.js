@@ -8,6 +8,15 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
 
+import Table from '@material-ui/core/Table';
+import { TableRowColumn } from 'material-ui';
+import { TableRow, TableBody } from '@material-ui/core';
+import { MuiThemeProvider } from 'material-ui/styles';
+
+import Grid from '@material-ui/core/Grid';
+import Navbar from './Navbar'
+
+
 const languages = [
   'python',
   'java',
@@ -124,14 +133,10 @@ export default class StudentEditor extends Component{
           value: defaultValue,
           theme: 'monokai',
           mode: 'python',
-          enableBasicAutocompletion: false,
           enableLiveAutocompletion: true,
-          fontSize: 20,
+          fontSize: 16,
           showGutter: true,
-          showPrintMargin: true,
           highlightActiveLine: true,
-          enableSnippets: false,
-          showLineNumbers: true,
         };
         this.setTheme = this.setTheme.bind(this);
         this.setMode = this.setMode.bind(this);
@@ -142,172 +147,138 @@ export default class StudentEditor extends Component{
 
     render() {
     return (
-        <div className="row" style={{display: 'flex',  justifyContent:'left', alignItems:'left', height: '100%'}}>
-          <div className="column">
+      <div className="container">
+        <Grid container style={{ height: '100%'}}>
+          <Grid item style={{ position: 'absolute', width: '100%'}}>
+            <Navbar />
+          </Grid>
+        </Grid>
+      <MuiThemeProvider>
+        <Table style={{marginTop: '12%'}}>
+          <TableBody>
+            <TableRow>
+              <TableRowColumn style={{textAlign: 'center'}}>
+                <div className="field">
+                    <Typography variant="h5" gutterBottom>
+                      Language
+                    </Typography>
+                    <p className="control">
+                      <span className="select">
+                        <select name="mode" onChange={this.setMode} value={this.state.mode}>
+                          {languages.map(lang => (
+                          <option key={lang} value={lang}>
+                              {lang}
+                          </option>
+                          ))}
+                        </select>
+                      </span>
+                    </p>
+                </div>
+                <div className="field">
+                  <Typography variant="h5" gutterBottom>
+                    Font
+                  </Typography>
+                  <p className="control">
+                    <span className="select">
+                      <select name="Theme" onChange={this.setTheme} value={this.state.theme}>
+                          {themes.map(lang => (
+                          <option key={lang} value={lang}>
+                            {lang}
+                          </option>
+                          ))}
+                      </select>
+                    </span>
+                  </p>
+              </div>
               <div className="field">
                 <Typography variant="h5" gutterBottom>
-                  Language
+                  Font Size
                 </Typography>
-                <Select children={languages} onChange={this.setMode} value={this.state.mode}></Select>
                 <p className="control">
                   <span className="select">
-                    <select name="mode" onChange={this.setMode} value={this.state.mode}>
-                      {languages.map(lang => (
+                    <select name="Font Size" onChange={this.setFontSize} value={this.state.fontSize}>
+                      {[14, 16, 18, 20, 24, 28, 32, 40].map(lang => (
                       <option key={lang} value={lang}>
-                          {lang}
+                        {lang}
                       </option>
                       ))}
                     </select>
                   </span>
                 </p>
               </div>
-
-              <div className="field">
-                <Typography variant="h5" gutterBottom>
-                  Font
-                </Typography>
-              <p className="control">
-                  <span className="select">
-                  <select name="Theme" onChange={this.setTheme} value={this.state.theme}>
-                      {themes.map(lang => (
-                      <option key={lang} value={lang}>
-                          {lang}
-                      </option>
-                      ))}
-                  </select>
-                  </span>
-              </p>
-              </div>
-
-              <div className="field">
-                <Typography variant="h5" gutterBottom>
-                  Font Size
-                </Typography>
-              <p className="control">
-                  <span className="select">
-                  <select name="Font Size" onChange={this.setFontSize} value={this.state.fontSize}>
-                      {[14, 16, 18, 20, 24, 28, 32, 40].map(lang => (
-                      <option key={lang} value={lang}>
-                          {lang}
-                      </option>
-                      ))}
-                  </select>
-                  </span>
-              </p>
-              </div>
-              <div className="field">
-              <p className="control">
-                  <Typography className="checkbox">
-                  <input
-                      type="checkbox"
-                      checked={this.state.enableBasicAutocompletion}
-                      onChange={e => this.setBoolean('enableBasicAutocompletion', e.target.checked)}
-                  />
-                  Enable Basic Autocomplete
-                  </Typography>
-              </p>
-              </div>
-              <div className="field">
-              <p className="control">
-                  <Typography className="checkbox">
-                  <input
-                      type="checkbox"
-                      checked={this.state.enableLiveAutocompletion}
-                      onChange={e => this.setBoolean('enableLiveAutocompletion', e.target.checked)}
-                  />
-                  Enable Live Autocomplete
-                  </Typography>
-              </p>
-              </div>
-              <div className="field">
-              <p className="control">
-                  <Typography className ="checkbox">
-                  <input
-                      type="checkbox"
-                      checked={this.state.showGutter}
-                      onChange={e => this.setBoolean('showGutter', e.target.checked)}
-                  />
-                  Show Gutter
-                  </Typography>
-              </p>
-              </div>
-              <div className="field">
-              <p className="control">
-                  <Typography className="checkbox">
-                  <input
-                      type="checkbox"
-                      checked={this.state.showPrintMargin}
-                      onChange={e => this.setBoolean('showPrintMargin', e.target.checked)}
-                  />
-                  Show Print Margin
-                  </Typography>
-              </p>
-              </div>
-              <div className="field">
-              <p className="control">
-                  <Typography className="checkbox">
-                  <input
-                      type="checkbox"
-                      checked={this.state.highlightActiveLine}
-                      onChange={e => this.setBoolean('highlightActiveLine', e.target.checked)}
-                  />
-                  Highlight Active Line
-                  </Typography>
-              </p>
-              </div>
-              <div className="field">
-              <p className="control">
-                  <Typography className="checkbox">
-                  <input
-                      type="checkbox"
-                      checked={this.state.enableSnippets}
-                      onChange={e => this.setBoolean('enableSnippets', e.target.checked)}
-                  />
-                  Enable Snippets
-                  </Typography>
-              </p>
-              </div>
-              <div className="field">
-              <p className="control">
-                  <Typography className="checkbox">
-                  <input
-                      type="checkbox"
-                      checked={this.state.showLineNumbers}
-                      onChange={e => this.setBoolean('showLineNumbers', e.target.checked)}
-                  />
-                  Show Line Numbers
-                  </Typography>
-              </p>
-              </div>
-              <Button variant = 'contained' color = 'primary' onClick = {this.submitCode}>Submit Code</Button>
-          </div>
-          <div className="column" style={{justifyContent:'right', alignItems:'right', marginLeft:'51.75%'}}>
-              <AceEditor
-              mode={this.state.mode}
-              theme={this.state.theme}
-              name="blah2"
-              onLoad={this.onLoad}
-              onChange={this.onChange}
-              onSelectionChange={this.onSelectionChange}
-              onCursorChange={this.onCursorChange}
-              onValidate={this.onValidate}
-              value={this.state.value}
-              fontSize={this.state.fontSize}
-              showPrintMargin={this.state.showPrintMargin}
-              showGutter={this.state.showGutter}
-              highlightActiveLine={this.state.highlightActiveLine}
-              setOptions={{
-                  enableBasicAutocompletion: this.state.enableBasicAutocompletion,
-                  enableLiveAutocompletion: this.state.enableLiveAutocompletion,
-                  enableSnippets: this.state.enableSnippets,
-                  showLineNumbers: this.state.showLineNumbers,
-                  tabSize: 2,
-              }}
-              />
-          </div>
-          
-        </div>
-        
-        )
+              </TableRowColumn>
+              <TableRowColumn style={{textAlign: 'center', paddingLeft: '17%'}}>
+                <AceEditor
+                  mode={this.state.mode}
+                  theme={this.state.theme}
+                  name="blah2"
+                  onLoad={this.onLoad}
+                  onChange={this.onChange}
+                  onSelectionChange={this.onSelectionChange}
+                  onCursorChange={this.onCursorChange}
+                  onValidate={this.onValidate}
+                  value={this.state.value}
+                  fontSize={this.state.fontSize}
+                  showPrintMargin={this.state.showPrintMargin}
+                  showGutter={this.state.showGutter}
+                  highlightActiveLine={this.state.highlightActiveLine}
+                  setOptions={{
+                      enableBasicAutocompletion: this.state.enableBasicAutocompletion,
+                      enableLiveAutocompletion: this.state.enableLiveAutocompletion,
+                      enableSnippets: this.state.enableSnippets,
+                      showLineNumbers: this.state.showLineNumbers,
+                      tabSize: 2,
+                  }}
+                />
+              </TableRowColumn>
+              <TableRowColumn style={{textAlign: 'center'}}>
+                  <div className="field">
+                  <p className="control">
+                    <Typography className="checkbox">
+                      <input
+                        type="checkbox"
+                        checked={this.state.enableLiveAutocompletion}
+                        onChange={e => this.setBoolean('enableLiveAutocompletion', e.target.checked)}
+                      />
+                    Enable Live Autocomplete
+                    </Typography>
+                  </p>
+                </div>
+                <div className="field">
+                  <p className="control">
+                    <Typography className ="checkbox">
+                      <input
+                          type="checkbox"
+                          checked={this.state.showGutter}
+                          onChange={e => this.setBoolean('showGutter', e.target.checked)}
+                      />
+                      Show Line Numbers
+                    </Typography>
+                  </p>
+                </div>
+                <div className="field">
+                  <p className="control">
+                    <Typography className="checkbox">
+                      <input
+                          type="checkbox"
+                          checked={this.state.highlightActiveLine}
+                          onChange={e => this.setBoolean('highlightActiveLine', e.target.checked)}
+                      />
+                      Highlight Active Line
+                    </Typography>
+                  </p>
+                </div>
+                <div className="field">
+                  <p className="control">
+                    <Button variant = 'contained' color = 'primary' onClick = {this.submitCode}>Submit Code</Button>
+                  </p>
+                </div>
+              </TableRowColumn>
+            </TableRow>
+          </TableBody>
+        </Table>
+        </MuiThemeProvider>
+      </div>
+      )
     }
 }

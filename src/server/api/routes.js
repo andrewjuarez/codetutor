@@ -1,19 +1,42 @@
 import express from 'express';
 import shortid from 'shortid';
 import sgMail from '@sendgrid/mail';
+import axios from 'axios';
 
 // Import Models
 import { Session, Submission } from '../models/models';
 
 // For SendGrid API
-import { sendGridAPIKey } from '../../../private/secrets';
-import { isBuffer } from 'util';
+import { sendGridAPIKey, jdoodle_clientID, jdoodle_clientSecret } from '../../../private/secrets';
 
 sgMail.setApiKey(sendGridAPIKey);
 
 const router = express.Router();
 
+const compile = (s, l, vI) => {
+  axios.post('https://api.jdoodle.com/execute', {
+    script: s,
+    language: l,
+    versionIndex: vI,
+    clientId: jdoodle_clientID,
+    clientSecret: jdoodle_clientSecret
+  })
+  .then((error, response, body) => {
+    console.log('error:', error);
+    console.log('statusCode:', response && response.statusCode);
+    console.log('body:', body);
+  });
+};
+
+const isError = (body) => {
+  return body.slice(0, 10) === '\nTraceback';
+};
+
 // NOTE: Parantheses indicate who would use the specific route (tutor, student, or both!)
+
+router.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 // POST request for new session (tutor)
 router.post('/api/new-session', (req, res) => {
