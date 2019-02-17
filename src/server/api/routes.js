@@ -45,35 +45,36 @@ router.post('/api/new-session', (req, res) => {
   const sessionID = shortid().slice(0,5);
   req.session.ssid = sessionID; // Remember the session ID for tutor!
 
-  console.log()
-
-  new Session({
+    Session.create({
     id: sessionID,
     name: req.body.name,
     description: req.body.description,
     submissions: []
-  })
-  .save()
-  .then(() => {
-    email_arr = req.body.emails.split(';')
-    for (let i = 0; i < email_arr.length; i++) {
-      email_arr[i] = email_arr[i].trim()
+  },function(err, session) {
+    if(err) {
+      res.json({ success: false, error: err });
+    } else {
+      res.json({ success: true, sessionID: sessionID, name: req.body.name, description: req.body.description });
+      // email_arr = req.body.emails.split(';')
+      // for (let i = 0; i < email_arr.length; i++) {
+      //   email_arr[i] = email_arr[i].trim()
+      // }
+      // console.log(email_arr)
+      // if (Array.isArray(email_arr) && email_arr.length !== 0) {
+      //   email_arr.forEach(email => {
+      //     sgMail.send({
+      //       to: `${email}`,
+      //       from: 'kevinnguyen125@gmail.com',
+      //       subject: '😆 CodeTutor Invitation 😆',
+      //       text: 'Learn Code. Breathe Code. Be Code.',
+      //       html: `<strong>Invitation Link: <a>http://codetutor.tech/${sessionID}</a></strong>`,
+      //     });
+      //   });
+      // }
     }
-    console.log(email_arr)
-    if (Array.isArray(email_arr) && email_arr.length !== 0) {
-      email_arr.forEach(email => {
-        sgMail.send({
-          to: `${email}`,
-          from: 'kevinnguyen125@gmail.com',
-          subject: '😆 CodeTutor Invitation 😆',
-          text: 'Learn Code. Breathe Code. Be Code.',
-          html: `<strong>Invitation Link: <a>http://codetutor.tech/${sessionID}</a></strong>`,
-        });
-      });
-    }
-    res.json({ success: true, sessionID: sessionID, name: req.body.name, description: req.body.description });
+      
   })
-  .catch(err => res.json({ success: false, error: err }));
+  
 });
 
 // POST request for new submission (student)

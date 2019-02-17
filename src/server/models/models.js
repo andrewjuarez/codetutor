@@ -22,7 +22,7 @@ const sessionSchema = new mongoose.Schema({
 // Submission Schema
 const submissionSchema = new mongoose.Schema({
     sessionID: String,
-    name: String,
+    submitter: String,
     code: String,
     state: {
       type: String,
