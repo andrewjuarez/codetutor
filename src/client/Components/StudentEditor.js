@@ -146,7 +146,7 @@ export default class StudentEditor extends Component{
           theme: 'monokai',
           mode: 'python',
           enableLiveAutocompletion: true,
-          fontSize: 16,
+          fontSize: 12,
           showGutter: true,
           highlightActiveLine: true,
         };
@@ -171,9 +171,6 @@ export default class StudentEditor extends Component{
             <TableRow>
               <TableRowColumn style={{textAlign: 'center'}}>
                 <div className="field">
-                    <Typography variant="h5" gutterBottom>
-                      Language
-                    </Typography>
                     <p className="control">
                       
                     <form autoComplete="off">
@@ -209,35 +206,69 @@ export default class StudentEditor extends Component{
                     </p>
                 </div>
                 <div className="field">
-                  <Typography variant="h5" gutterBottom>
-                    Font
-                  </Typography>
                   <p className="control">
-                    <span className="select">
-                      <select name="Theme" onChange={this.setTheme} value={this.state.theme}>
-                          {themes.map(lang => (
-                          <option key={lang} value={lang}>
-                            {lang}
-                          </option>
-                          ))}
-                      </select>
-                    </span>
+                  <form autoComplete="off">
+                      <FormControl variant="outlined" setFontSize = '12px'>
+                        <InputLabel
+                          ref={ref => {
+                            this.InputLabelRef = ref;
+                          }}
+                          htmlFor="outlined-age-simple"
+                        >
+                          Theme
+                        </InputLabel>
+                        <Select
+                          value={this.state.theme}
+                          onChange={this.setTheme}
+                          input={
+                            <OutlinedInput
+                              labelWidth={this.state.labelWidth}
+                              name="theme"
+                            />
+                          }
+                        >
+                          <MenuItem value="">
+                            <em>None</em>
+                          </MenuItem>
+                          <MenuItem value={'monokai'}>Monokai</MenuItem>
+                          <MenuItem value={'github'}>GitHub</MenuItem>
+                          <MenuItem value={'tomorrow'}>Tomorrow</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </form>
                   </p>
               </div>
               <div className="field">
-                <Typography variant="h5" gutterBottom>
-                  Font Size
-                </Typography>
                 <p className="control">
-                  <span className="select">
-                    <select name="Font Size" onChange={this.setFontSize} value={this.state.fontSize}>
-                      {[14, 16, 18, 20, 24, 28, 32, 40].map(lang => (
-                      <option key={lang} value={lang}>
-                        {lang}
-                      </option>
-                      ))}
-                    </select>
-                  </span>
+                <form autoComplete="off">
+                      <FormControl variant="outlined" setFontSize = '12px'>
+                        <InputLabel 
+                          ref={ref => {
+                            this.InputLabelRef = ref;
+                          }}
+                          htmlFor="outlined-age-simple"
+                        >
+                          Font Size
+                        </InputLabel>
+                        <Select
+                          value={this.state.fontSize}
+                          onChange={this.setFontSize}
+                          input={
+                            <OutlinedInput
+                              labelWidth={this.state.labelWidth}
+                              name="fontSize"
+                            />
+                          }
+                        >
+                          <MenuItem value="">
+                            <em>None</em>
+                          </MenuItem>
+                          <MenuItem value={12}>12</MenuItem>
+                          <MenuItem value={20}>20</MenuItem>
+                          <MenuItem value={24}>24</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </form>
                 </p>
               </div>
               </TableRowColumn>
