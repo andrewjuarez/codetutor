@@ -34,19 +34,18 @@ class App extends Component {
     const { classes } = this.props;
 
     return (
-        <Grid container style={{ height: '100%', border: 'blue solid 4px' }}>
-          <Grid item style={{ position: 'absolute', width: '100%', border: 'yellow solid 4px' }}>
+        <Grid container style={{ height: '100%'}}>
+          <Grid item style={{ position: 'absolute', width: '100%'}}>
             <Navbar />
           </Grid>
-          <Grid container style={{ border: 'red solid 4px', backgroundImage: `url(${Background})`, backgroundSize: 'cover' }} justify="center" alignItems="center">
+          <Grid container style={{backgroundImage: `url(${Background})`, backgroundSize: 'cover' }} justify="center" alignItems="center">
             <Grid container justify="center" style={{ height: '10%' }}>
               <Grid item xs={4}>
-                <a href="/create-session" ><Button fullWidth variant="contained" color="primary" size="large" style={{ fontSize: 30 }} onClick={this.submitTest}>
+                <Link to="/create-session" style={{textDecoration: 'none'}}><Button fullWidth variant="contained" color="primary" size="large" style={{ fontSize: 30 }} onClick={this.submitTest}>
                   New Session
-                </Button></a>
+                </Button></Link>
                 <Grid style={{ display: 'flex', flexDirection: 'row', color: 'white' }}>
                   <hr style={{ width: 150, weight: 10 }} />
-                    OR
                   <hr style={{ width: 150, weight: 10 }} />
                 </Grid>
                   <StudentJoinSession/>

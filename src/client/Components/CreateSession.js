@@ -157,6 +157,11 @@ createSubmissionsTableBody = (students) => {
     if(this.state.sessionID === "") {
         return (
         <div>
+          <Grid container style={{ height: '100%'}}>
+            <Grid item style={{ position: 'absolute', width: '100%'}}>
+              <Navbar />
+            </Grid>
+          </Grid>
           <h1 style={{textAlign: "center", color: "#3F51B5", fontSize: 60, fontFamily: 'Roboto', marginTop: '7.5%'}}> New Session </h1>
           <div className="container" style={{textAlign: 'center'}}>
             <form onSubmit={this.handleSubmit}>
