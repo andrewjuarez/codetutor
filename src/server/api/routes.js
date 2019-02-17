@@ -131,8 +131,8 @@ router.get('/api/all-submissions', (req, res) => {
   Session.findOne({ id: req.session.ssid })
   .populate('submissions', 'submitter state')
   .exec()
-  .then(({ submissions }) => res.json({ success: true, submissions }))
-  .catch(err => res.json({ success: false, error: err }));
+  .then(({ submissions }) => res.json({ status: "success", submissions }))
+  .catch(err => res.json({ status: "failure", error: err }));
 });
 
 router.post('/api/get-prompt', (req, res) => {
