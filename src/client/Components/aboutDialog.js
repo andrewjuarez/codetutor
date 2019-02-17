@@ -34,9 +34,14 @@ class AboutDialog extends React.Component {
      <DialogTitle id="alert-dialog-title">{"Hackers:"}</DialogTitle>
      <DialogContent>
       <DialogContentText id="alert-dialog-description">
-      <p>Andrew Juarez: 4th Year --- Kevin Nguyen: 2nd Year</p>
-      <p>Sahil Railkar: 1st Year --- Ryan Miranda: 1st Year</p>
-      
+      <ul>
+        <li>Andrew Juarez - 4th Year</li>  
+        <li>Kevin Nguyen - 2nd Year</li>
+        <li>Ryan Miranda - 1st Year</li>
+        <li>Sahil Railkar - 1st Year</li>  
+      </ul>
+        <p>Built for HackUCI 2019.</p>
+
       </DialogContentText>
      </DialogContent>
      <DialogActions>

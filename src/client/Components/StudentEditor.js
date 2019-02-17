@@ -171,8 +171,6 @@ export default class StudentEditor extends Component{
       }
     
       submitCode = () => {
-        console.log("props:")
-        console.log()
         const data = {
           sessionID: this.state.sessionID,
           code: this.state.value,
@@ -205,9 +203,8 @@ export default class StudentEditor extends Component{
             console.log(result);
             if(result.data["status"] == "success"){
               console.log("Status is success!");
-              // this.state.value = result.data["prompt"];
+              
               this.setState({value: result.data["prompt"]})
-              console.log("Updated value: ", this.state.value)
             }
           })        
         
