@@ -56,7 +56,7 @@ function compile(s, l, vI) {
     });
   }
 
-console.log(compile('print(1)', 'python3', '2'))
+  console.log(compile("print((lambda x: x ** 2)(3))", 'python3', '2'))
 
 function isError(body) {
     if (body.slice(0, 10) === '\nTraceback') {
