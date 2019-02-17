@@ -12,6 +12,16 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import axios from 'axios';
 import color from '@material-ui/core/colors/blue';
 
+import Chip from '@material-ui/core/Chip';
+import Table from '@material-ui/core/Table';
+
+import Student from './Student'
+import { TableRowColumn } from 'material-ui';
+import { TableRow, TableBody } from '@material-ui/core';
+import { createMuiTheme } from '@material-ui/core/styles';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { red, green } from '@material-ui/core/colors';
+
 
 const styles = theme => ({
   button: {
@@ -19,12 +29,66 @@ const styles = theme => ({
   }
 });
 
+const theme = createMuiTheme({
+  palette: {
+    primary: red,
+    secondary: green,
+  },
+});
+
+let students = [
+  {
+    name: 'Homer Simpson',
+    correct: false,
+    sourceCode: 'print(\'Hello, world!\')'
+  },
+ {
+    name: 'Sahil Railkar',
+    correct: false,
+    sourceCode: 'print(\'Hello, world!\')'
+  },
+  {
+    name: 'Ryan Miranda',
+    correct: true,
+    sourceCode: 'print(\'Hello, world!\')'
+  },
+  {
+    name: 'Kevin Nguyen',
+    correct: true,
+    sourceCode: 'print(\'Hello, world!\')'
+  },
+  {
+    name: 'Andrew Juarez',
+    correct: true,
+    sourceCode: 'print(\'Hello, world!\')'
+  },
+  {
+    name: 'Albert Einstein',
+    correct: false,
+    sourceCode: 'print(\'Hello, world!\')'
+  },
+  {
+    name: 'Oprah Winfrey',
+    correct: false,
+    sourceCode: 'print(\'Hello, world!\')'
+  },
+  {
+    name: 'Elon Musk',
+    correct: true,
+    sourceCode: 'print(\'Hello, world!\')'
+  },
+  {
+    name: 'Stephen Curry',
+    correct: false,
+    sourceCode: 'print(\'Hello, world!\')'
+  }
+]
 
 class CreateSession extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          sessionID: '', 
+          sessionID: 'value', 
           sessionName: '',
           mailingList: '',
           problem: '',
@@ -47,6 +111,25 @@ class CreateSession extends Component {
 handleProblem(event) {
   this.setState({problem: event.target.value});
 } 
+
+
+createSubmissionsTableBody = (students) => {
+  let table = []
+  
+  let counter = 0;
+  while (counter != students.length) {
+    let children = []
+    for (let i = 0; i <= 3; i++) {
+      if (counter != students.length) {
+        children.push(<MuiThemeProvider><TableRowColumn><Student name={students[counter].name} correct={students[counter].correct} sourceCode={students[counter].sourceCode}></Student></TableRowColumn></MuiThemeProvider>)
+        counter += 1;
+      }
+    }
+    table.push(<MuiThemeProvider><TableRow>{children}</TableRow></MuiThemeProvider>)
+  }
+  return table
+}
+
 
   handleSubmit = (event) => {
       
@@ -97,21 +180,21 @@ handleProblem(event) {
         </div>)
     } else {
         return (
-            <Grid container style={{ height: '100%', border: 'blue solid 4px' }}>
-              <Grid item style={{ position: 'absolute', width: '100%', border: 'yellow solid 4px' }}>
-                <Navbar />
-              </Grid>
-              <Grid container style={{ border: 'red solid 4px', backgroundImage: `url(${Background})`, backgroundSize: 'cover' }} justify="center" alignItems="center">
-                <Grid container justify="center" style={{ height: '10%' }}>
-                  <Grid item xs={4}>
-                    <div style={{backgroundColor: "white"}}>
-                        <h2>Session Generated!</h2>
-                        <h4>{this.state.sessionID}</h4>
-                    </div>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
+            <div>
+              <div>
+                <h1 style={{textAlign: "center", color: "#3F51B5", fontSize: 60, fontFamily: 'Roboto', marginTop: '7.5%'}}>
+                  Code: {this.state.sessionID}
+                </h1>
+              </div>
+              <hr/>
+              <div>
+                <Table>
+                  <TableBody>
+                    {this.createSubmissionsTableBody(students)}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
             );
     }
 
