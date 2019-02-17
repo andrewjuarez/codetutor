@@ -96,18 +96,32 @@ router.post('/api/new-submission', (req, res) => {
 router.post('/api/submit-code', (req, res) => {
   console.log("POST: /api/submit-code");
   
-  console.log(req.session);
-  console.log(req.session.submissionID);
-  Submission.findOneAndUpdate(req.session.submissionID, { code: req.body.data["code"], state: "submitted" })
-  .then(() => res.json({ success: true }))
-  .catch(err => res.json({ success: false, error: err }));
+  console.log(req.body.sessionID);
+  console.log(req.body.name);
+  console.log(req.body.code);
+  
+  Submission.create({
+    sessionID: req.body.sessionID,
+    submitter: req.body.name,
+    code: req.body.code
+  }, function(err, submission){
+    if(err){
+      res.json({status: "error"});
+    } else {
+      res.json({status: "success"});
+    }
+  });
+
+  // Submission.findOneAndUpdate(req.body.submissionID, { code: req.body.code, state: "submitted" })
+  // .then(() => res.json({ success: true }))
+  // .catch(err => res.json({ success: false, error: err }));
 });
 
 // GET request for a student's name & code given their submission ID (tutor)
 router.get('/api/submission/:submissionID', (req, res) => {
   Submission.findById(req.params.submissionID)
-  .then(({ name, code }) => res.json({ success: true, name, code }))
-  .catch(err => res.json({ success: false, error: err }));
+  .then(({ name, code }) => res.json({ status: "success", name, code }))
+  .catch(err => res.json({ status: "failure", error: err }));
 });
 
 // GET request for a list of submissions, including their name & state (tutor)
