@@ -88,11 +88,7 @@ class CreateSession extends Component {
   constructor(props) {
       super(props);
       this.state = {
-<<<<<<< HEAD
           sessionID: 'value', 
-=======
-          sessionID: '',
->>>>>>> b56e0ba7bd508f896c20d8036ff5e88a41286e8a
           sessionName: '',
           mailingList: '',
           problem: '',
