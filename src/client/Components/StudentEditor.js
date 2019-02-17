@@ -8,13 +8,23 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
 
+import Grid from '@material-ui/core/Grid';
+import Navbar from './Navbar';
+
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import FilledInput from '@material-ui/core/FilledInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
 import Table from '@material-ui/core/Table';
 import { TableRowColumn } from 'material-ui';
 import { TableRow, TableBody } from '@material-ui/core';
 import { MuiThemeProvider } from 'material-ui/styles';
-
-import Grid from '@material-ui/core/Grid';
-import Navbar from './Navbar'
 
 
 const languages = [
@@ -95,11 +105,12 @@ export default class StudentEditor extends Component{
           theme: e.target.value,
         });
       }
-      setMode(e) {
-        this.setState({
-          mode: e.target.value,
-        });
-      }
+     
+      setMode = event => {
+        this.setState({ [event.target.name]: event.target.value });
+        console.log(event.target.value)
+      };
+     
       setBoolean(name, value) {
         this.setState({
           [name]: value,
@@ -163,15 +174,37 @@ export default class StudentEditor extends Component{
                       Language
                     </Typography>
                     <p className="control">
-                      <span className="select">
-                        <select name="mode" onChange={this.setMode} value={this.state.mode}>
-                          {languages.map(lang => (
-                          <option key={lang} value={lang}>
-                              {lang}
-                          </option>
-                          ))}
-                        </select>
-                      </span>
+                      
+                    <form autoComplete="off">
+                <FormControl variant="outlined">
+                  <InputLabel
+                    ref={ref => {
+                      this.InputLabelRef = ref;
+                    }}
+                    htmlFor="outlined-age-simple"
+                  >
+                    Language
+                  </InputLabel>
+                  <Select
+                    value={this.state.mode}
+                    onChange={this.setMode}
+                    input={
+                      <OutlinedInput
+                        labelWidth={this.state.labelWidth}
+                        name="mode"
+                      />
+                    }
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={'python'}>Python3</MenuItem>
+                    <MenuItem value={'java'}>Java</MenuItem>
+                    <MenuItem value={'javascript'}>JavaScript</MenuItem>
+                  </Select>
+                </FormControl>
+              </form>
+
                     </p>
                 </div>
                 <div className="field">
