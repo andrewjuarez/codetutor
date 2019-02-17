@@ -25,6 +25,7 @@ import Table from '@material-ui/core/Table';
 import { TableRowColumn } from 'material-ui';
 import { TableRow, TableBody } from '@material-ui/core';
 import { MuiThemeProvider } from 'material-ui/styles';
+import Checkbox from '@material-ui/core/Checkbox';
 
 
 const languages = [
@@ -264,27 +265,20 @@ export default class StudentEditor extends Component{
                   }}
                 />
               </TableRowColumn>
-              <TableRowColumn style={{textAlign: 'center'}}>
+              <TableRowColumn style={{textAlign: 'left'}}>
                   <div className="field">
                   <p className="control">
                     <Typography className="checkbox">
-                      <input
-                        type="checkbox"
-                        checked={this.state.enableLiveAutocompletion}
-                        onChange={e => this.setBoolean('enableLiveAutocompletion', e.target.checked)}
-                      />
-                    Enable Live Autocomplete
+                      <Checkbox checked={this.state.enableLiveAutocompletion} onChange={e => this.setBoolean('enableLiveAutocompletion', e.target.checked)}>
+                      </Checkbox>
+                      Enable Live Autocomplete
                     </Typography>
                   </p>
                 </div>
                 <div className="field">
                   <p className="control">
                     <Typography className ="checkbox">
-                      <input
-                          type="checkbox"
-                          checked={this.state.showGutter}
-                          onChange={e => this.setBoolean('showGutter', e.target.checked)}
-                      />
+                      <Checkbox checked={this.state.showGutter} onChange={e => this.setBoolean('showGutter', e.target.checked)}></Checkbox>
                       Show Line Numbers
                     </Typography>
                   </p>
@@ -292,16 +286,12 @@ export default class StudentEditor extends Component{
                 <div className="field">
                   <p className="control">
                     <Typography className="checkbox">
-                      <input
-                          type="checkbox"
-                          checked={this.state.highlightActiveLine}
-                          onChange={e => this.setBoolean('highlightActiveLine', e.target.checked)}
-                      />
+                      <Checkbox checked={this.state.highlightActiveLine} onChange={e => this.setBoolean('highlightActiveLine', e.target.checked)}></Checkbox>
                       Highlight Active Line
                     </Typography>
                   </p>
                 </div>
-                <div className="field">
+                <div className="field" textAlign="center" marginTop='15%'>
                   <p className="control">
                     <Button variant = 'contained' color = 'primary' onClick = {this.submitCode}>Submit Code</Button>
                   </p>
