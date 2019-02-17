@@ -22,8 +22,8 @@ class AboutDialog extends React.Component {
  render() {
   return (
    <div>
-    <Button variant="outlined" color="primary.contrastText" onClick={this.handleClickOpen}>
-     Open alert dialog
+    <Button color="primary.contrastText" onClick={this.handleClickOpen}>
+     About Us
     </Button>
     <Dialog
      open={this.state.open}
@@ -31,20 +31,16 @@ class AboutDialog extends React.Component {
      aria-labelledby="alert-dialog-title"
      aria-describedby="alert-dialog-description"
     >
-     <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+     <DialogTitle id="alert-dialog-title">{'Creators'}</DialogTitle>
      <DialogContent>
       <DialogContentText id="alert-dialog-description">
-       Let Google help apps determine location. This means sending anonymous location data to
-       Google, even when no apps are running.
+       <p>Andrew Juarez: 4th Year</p>
+       <p>Kevin Nguyen: 2nd Year</p>
+       <p>Ryan Miranda: 1st Year</p>
+       <p>Sahil Railkar: 1st Year</p>
       </DialogContentText>
      </DialogContent>
      <DialogActions>
-      <Button onClick={this.handleClose} color="primary">
-       Disagree
-      </Button>
-      <Button onClick={this.handleClose} color="primary" autoFocus>
-       Agree
-      </Button>
      </DialogActions>
     </Dialog>
    </div>

@@ -5,12 +5,11 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Navbar from './Components/Navbar';
-
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Background from './bg.png';
 
 //Components
 import StudentJoinSession from './Components/studentJoinSession'
-import aboutDialog from './Components/aboutDialog'
 
 const styles = theme => ({
   button: {
@@ -46,9 +45,7 @@ class App extends Component {
                   <hr style={{ width: 150, weight: 10 }} />
                   <hr style={{ width: 150, weight: 10 }} />
                 </Grid>
-                  <aboutDialog/>
                   <StudentJoinSession/>
-                  
               </Grid>
             </Grid>
           </Grid>
