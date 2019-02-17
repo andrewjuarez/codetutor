@@ -12,6 +12,8 @@ import { browserHistory } from 'react-router';
 import StudentEditor from './Components/StudentEditor'
 import CreateSession from './Components/CreateSession'
 
+import Select from './Components/select'
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -37,6 +39,10 @@ function AppWithTheme() {
             <Route exact path = {'/create-session'} component = {CreateSession} />
             <Route path = '/studenteditor' component = {StudentEditor} />
             <Route path = '/([0-9]{4})' component = {StudentEditor} />
+
+
+            <Route path = '/select' component = {Select} />
+           
         </MuiThemeProvider>
       </Router>
 

@@ -9,8 +9,6 @@ import Typography from '@material-ui/core/Typography';
 
 import PropTypes from 'prop-types';
 
-
-
 const languages = [
   'python',
   'java',
@@ -55,17 +53,8 @@ languages.forEach(lang => {
 themes.forEach(theme => {
   require(`brace/theme/${theme}`);
 });
-// /*eslint-disable no-alert, no-console */
-// import 'brace/ext/language_tools';
-// import 'brace/ext/searchbox';
 
 const defaultValue = 'Enter Code Here';
-
-const root =  {
-    width: '100%',
-    maxWidth: 500,
-}
-
 
 export default class StudentEditor extends Component{
     onLoad() {
@@ -137,7 +126,7 @@ export default class StudentEditor extends Component{
           mode: 'python',
           enableBasicAutocompletion: false,
           enableLiveAutocompletion: false,
-          fontSize: 14,
+          fontSize: 20,
           showGutter: true,
           showPrintMargin: true,
           highlightActiveLine: true,
@@ -153,11 +142,11 @@ export default class StudentEditor extends Component{
 
     render() {
     return (
-        <div style = {root}>
+        <div style={{display: 'flex',  justifyContent:'left', alignItems:'left', height: '50vh'}}>
           <div className="column">
               <div className="field">
                 <Typography variant="subtitle1" gutterBottom>
-                  Mode
+                  Language
                 </Typography>
                 <p className="control">
                   <span className="select">
@@ -174,7 +163,7 @@ export default class StudentEditor extends Component{
 
               <div className="field">
                 <Typography variant="subtitle1" gutterBottom>
-                  Language
+                  Font
                 </Typography>
               <p className="control">
                   <span className="select">
@@ -289,11 +278,9 @@ export default class StudentEditor extends Component{
                   </label>
               </p>
               </div>
+              <Button variant = 'contained' color = 'primary' onClick = {this.submitCode}>Submit Code</Button>
           </div>
-          <div className="examples column" style = {divStyle}>
-              <Typography variant="h6" gutterBottom>
-                  Editor
-                </Typography>
+          <div style={{justifyContent:'right', alignItems:'right'}}>
               <AceEditor
               mode={this.state.mode}
               theme={this.state.theme}
@@ -318,7 +305,7 @@ export default class StudentEditor extends Component{
               />
           </div>
           
-          <Button variant = 'contained' color = 'primary' onClick = {this.submitCode}>Submit Code</Button>
+         
 
           {/* <div className="column">
               <h2>Code</h2>
@@ -348,6 +335,7 @@ export default class StudentEditor extends Component{
               />
           </div> */}
         </div>
+        
         )
     }
 }
