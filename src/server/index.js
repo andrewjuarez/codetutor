@@ -22,7 +22,7 @@ app.use(logger('dev'));
 app.use(express.static('dist'));
 app.use(bodyParser.json({ type: "*/*" }));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'dist')));
+// app.use(express.static(path.join(__dirname, 'dist')));
 app.use(session({
   name: 'ctCookie',
   secret: sessionSecret,

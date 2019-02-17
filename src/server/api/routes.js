@@ -128,7 +128,7 @@ router.post('/api/join-session', (req, res) => {
     } else if(!!session) {
       console.log("Session found by ID");
       console.log(session);
-      res.json({status: "success"})
+      res.json({status: "success" })
     }
   });
 
