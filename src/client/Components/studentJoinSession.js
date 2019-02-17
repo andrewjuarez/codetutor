@@ -36,6 +36,15 @@ class FormDialog extends React.Component {
       name: this.state.Name
     }
     console.log(data)
+    axios.post('/api/new-submission', data)
+    .then((result)=> {
+      if(result.data['status'] == "success"){
+        console.log("success");
+      }
+      else {
+        console.log("failed");
+      }
+    })
     axios.post("/api/join-session", data)
         .then((result) => {
             console.log("API return data!");

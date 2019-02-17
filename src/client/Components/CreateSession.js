@@ -23,6 +23,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { red, green } from '@material-ui/core/colors';
 
 
+
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
@@ -92,6 +93,7 @@ class CreateSession extends Component {
           sessionName: '',
           mailingList: '',
           problem: '',
+          submissions: []
         };
 
       this.handleSessionName = this.handleSessionName.bind(this);
@@ -121,7 +123,8 @@ createSubmissionsTableBody = (students) => {
     let children = []
     for (let i = 0; i <= 3; i++) {
       if (counter != students.length) {
-        children.push(<MuiThemeProvider><TableRowColumn><Student name={students[counter].name} correct={students[counter].correct} sourceCode={students[counter].sourceCode}></Student></TableRowColumn></MuiThemeProvider>)
+        var t = "/teacher-editor?id=" + students[counter]._id
+        children.push(<MuiThemeProvider><TableRowColumn><Link to={t}><Student name={students[counter].submitter} correct={students[counter].state} _id={students[counter]._id}></Student></Link></TableRowColumn></MuiThemeProvider>)
         counter += 1;
       }
       else {
@@ -156,7 +159,28 @@ createSubmissionsTableBody = (students) => {
             this.setState({problem: result.data["problem"]});
         })
   }
+    
+  componentDidMount () {
+    this.interval = setInterval(() => this.getSubmissions(), 3000);
+  }
 
+  componentWillUnmount () {
+    clearInterval(this.interval);
+  }
+
+  getSubmissions = () => {
+      axios.get("/api/all-submissions")
+          .then((result) => {
+            console.log("making API call /api/all-submissions");
+            console.log(result);
+            if(result.data["status"] == "success"){
+              console.log("Status is success!");
+              this.setState({submissions: result.data["submissions"]})
+              console.log("Updated submissions: ", this.state.submissions)
+            }
+          })
+          .catch(err=>console.log(err)); 
+    }
 
   render() {
     if(this.state.sessionID === "") {
@@ -206,7 +230,7 @@ createSubmissionsTableBody = (students) => {
               <div>
                 <Table>
                   <TableBody>
-                    {this.createSubmissionsTableBody(students)}
+                    {this.createSubmissionsTableBody(this.state.submissions)}
                   </TableBody>
                 </Table>
               </div>

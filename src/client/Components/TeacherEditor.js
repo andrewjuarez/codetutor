@@ -106,7 +106,7 @@ themes.forEach(theme => {
 
 let defaultValue = 'Enter Code Here';  
 
-export default class StudentEditor extends Component{
+export default class TeacherEditor extends Component{
     
   
     state = {
@@ -196,30 +196,26 @@ export default class StudentEditor extends Component{
         })
 
       }
-
-      componentWillMount() {
-        
-        axios.post("/api/get-prompt", {id: this.state.sessionID})
-          .then((result) => {
-            console.log("making API call /api/get-prompt");
-            console.log(result);
-            if(result.data["status"] == "success"){
-              console.log("Status is success!");
-              // this.state.value = result.data["prompt"];
-              this.setState({value: result.data["prompt"]})
-              console.log("Updated value: ", this.state.value)
-            }
-          })        
-        
-      }
-
+        componentWillMount() {
+            console.log(this.state._id)
+            axios.get("/api/submission/", {id: this.state._id})
+            .then((result) => {
+              console.log(result);
+              if(result.data["status"] == "success"){
+                console.log("Status is success!");
+                console.log(result.data["code"])
+                defaultValue = result.data["code"]
+              }
+              }
+            ) 
+        }
       
     
       constructor(props) {
         super(props);
           this.state = {
           sessionID: this.props["match"]["params"]["id"],
-          name: this.props.location.search.split("=")[1],
+          _id: this.props.location.search.split("=")[1],
           value: defaultValue,
           theme: 'monokai',
           mode: 'python',

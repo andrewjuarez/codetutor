@@ -128,10 +128,15 @@ router.get('/api/submission/:submissionID', (req, res) => {
 
 // GET request for a list of submissions, including their name & state (tutor)
 router.get('/api/all-submissions', (req, res) => {
+  console.log('Call to /api/all-submissions')
+  console.log("ssid", req.session.ssid);
   Session.findOne({ id: req.session.ssid })
   .populate('submissions', 'submitter state')
   .exec()
-  .then(({ submissions }) => res.json({ status: "success", submissions }))
+  .then(({ submissions }) => {
+    console.log("submissions:", submissions);
+    res.json({ status: "success", submissions });
+  })
   .catch(err => res.json({ status: "failure", error: err }));
 });
 

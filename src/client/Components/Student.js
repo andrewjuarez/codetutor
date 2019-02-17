@@ -28,7 +28,7 @@ export default class Student extends Component{
         this.state = {
             name: props.name,
             correct: props.correct,
-            sourceCode: props.sourceCode
+            _id: props._id
         }
     }
 
