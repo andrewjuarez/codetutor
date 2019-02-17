@@ -196,7 +196,7 @@ export default class TeacherEditor extends Component{
         })
 
       }
-        componentWillMount() {
+        componentWillMount = () =>{
             console.log(this.state._id)
             axios.get("/api/submission/", {id: this.state._id})
             .then((result) => {
@@ -205,7 +205,8 @@ export default class TeacherEditor extends Component{
                 console.log("Status is success!");
                 console.log(result.data["code"])
                 defaultValue = result.data["code"]
-              }
+                this.setState({submitCode: result.data["code"]})
+                }
               }
             ) 
         }
@@ -217,6 +218,7 @@ export default class TeacherEditor extends Component{
           sessionID: this.props["match"]["params"]["id"],
           _id: this.props.location.search.split("=")[1],
           value: defaultValue,
+          submitCode: '',
           theme: 'monokai',
           mode: 'python',
           enableLiveAutocompletion: true,
@@ -241,6 +243,7 @@ export default class TeacherEditor extends Component{
             <Navbar />
           </Grid>
         </Grid>
+        <p>{this.state.submitCode}</p>
       <MuiThemeProvider>
         <Table style={{marginTop: '12%'}}>
           <TableBody>
@@ -358,7 +361,7 @@ export default class TeacherEditor extends Component{
                   onSelectionChange={this.onSelectionChange}
                   onCursorChange={this.onCursorChange}
                   onValidate={this.onValidate}
-                  value={this.state.value}
+                  value={defaultValue}
                   fontSize={this.state.fontSize}
                   showPrintMargin={this.state.showPrintMargin}
                   showGutter={this.state.showGutter}
