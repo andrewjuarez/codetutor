@@ -41,48 +41,48 @@ let students = [
     name: 'Homer Simpson',
     correct: false,
     sourceCode: 'print(\'Hello, world!\')'
-  },
- {
-    name: 'Sahil Railkar',
-    correct: false,
-    sourceCode: 'print(\'Hello, world!\')'
-  },
-  {
-    name: 'Ryan Miranda',
-    correct: true,
-    sourceCode: 'print(\'Hello, world!\')'
-  },
-  {
-    name: 'Kevin Nguyen',
-    correct: true,
-    sourceCode: 'print(\'Hello, world!\')'
-  },
-  {
-    name: 'Andrew Juarez',
-    correct: true,
-    sourceCode: 'print(\'Hello, world!\')'
-  },
-  {
-    name: 'Albert Einstein',
-    correct: false,
-    sourceCode: 'print(\'Hello, world!\')'
-  },
-  {
-    name: 'Oprah Winfrey',
-    correct: false,
-    sourceCode: 'print(\'Hello, world!\')'
-  },
-  {
-    name: 'Elon Musk',
-    correct: true,
-    sourceCode: 'print(\'Hello, world!\')'
-  },
-  {
-    name: 'Stephen Curry',
-    correct: false,
-    sourceCode: 'print(\'Hello, world!\')'
-  }
-]
+  }]
+//  {
+//     name: 'Sahil Railkar',
+//     correct: false,
+//     sourceCode: 'print(\'Hello, world!\')'
+//   },
+//   {
+//     name: 'Ryan Miranda',
+//     correct: true,
+//     sourceCode: 'print(\'Hello, world!\')'
+//   },
+//   {
+//     name: 'Kevin Nguyen',
+//     correct: true,
+//     sourceCode: 'print(\'Hello, world!\')'
+//   },
+//   {
+//     name: 'Andrew Juarez',
+//     correct: true,
+//     sourceCode: 'print(\'Hello, world!\')'
+//   },
+//   {
+//     name: 'Albert Einstein',
+//     correct: false,
+//     sourceCode: 'print(\'Hello, world!\')'
+//   },
+//   {
+//     name: 'Oprah Winfrey',
+//     correct: false,
+//     sourceCode: 'print(\'Hello, world!\')'
+//   },
+//   {
+//     name: 'Elon Musk',
+//     correct: true,
+//     sourceCode: 'print(\'Hello, world!\')'
+//   },
+//   {
+//     name: 'Stephen Curry',
+//     correct: false,
+//     sourceCode: 'print(\'Hello, world!\')'
+//   }
+// ]
 
 class CreateSession extends Component {
   constructor(props) {

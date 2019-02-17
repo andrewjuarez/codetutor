@@ -55,8 +55,13 @@ router.post('/api/new-session', (req, res) => {
   })
   .save()
   .then(() => {
-    if (Array.isArray(req.body.emails) && req.body.emails.length !== 0) {
-      req.body.emails.forEach(email => {
+    email_arr = req.body.emails.split(';')
+    for (let i = 0; i < email_arr.length; i++) {
+      email_arr[i] = email_arr[i].trim()
+    }
+    console.log(email_arr)
+    if (Array.isArray(email_arr) && email_arr.length !== 0) {
+      email_arr.forEach(email => {
         sgMail.send({
           to: `${email}`,
           from: 'kevinnguyen125@gmail.com',
