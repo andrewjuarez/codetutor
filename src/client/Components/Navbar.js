@@ -73,7 +73,7 @@ function SearchAppBar(props) {
       <AppBar position="static">
         <Toolbar>
           <Link to="/" style={{textDecoration: 'none'}}>
-            <Typography className={classes.title} variant="h6" noWrap>
+            <Typography className={classes.title} variant="h6" style={{color:'white'}} noWrap>
               CodeTutor
             </Typography>
           </Link>

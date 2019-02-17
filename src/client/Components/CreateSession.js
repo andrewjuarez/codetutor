@@ -162,7 +162,7 @@ createSubmissionsTableBody = (students) => {
               <Navbar />
             </Grid>
           </Grid>
-          <h1 style={{textAlign: "center", color: "#3F51B5", fontSize: 60, fontFamily: 'Roboto', marginTop: '7.5%'}}> New Session </h1>
+          <h1 style={{textAlign: "center", fontSize: 60, fontFamily: 'Roboto', marginTop: '7.5%', color:"#01897B"}}> New Session </h1>
           <div className="container" style={{textAlign: 'center'}}>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">

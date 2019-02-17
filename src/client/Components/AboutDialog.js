@@ -22,7 +22,7 @@ class AboutDialog extends React.Component {
  render() {
   return (
    <div>
-    <Button variant="outlined" color="primary.contrastText" onClick={this.handleClickOpen}>
+    <Button variant="outlined" style={{color:'white'}} onClick={this.handleClickOpen}>
      Open alert dialog
     </Button>
     <Dialog
