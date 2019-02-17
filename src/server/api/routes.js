@@ -1,26 +1,56 @@
 import express from 'express';
 import shortid from 'shortid';
 import sgMail from '@sendgrid/mail';
+import axios from 'axios';
 
 // Import Models
 import { Session, Submission } from '../models/models';
 
 // For SendGrid API
-import { sendGridAPIKey } from '../../../private/secrets';
+import { sendGridAPIKey, jdoodle_clientID, jdoodle_clientSecret } from '../../../private/secrets';
 
 sgMail.setApiKey(sendGridAPIKey);
 
 const router = express.Router();
 
+const compile = (s, l, vI) => {
+  axios.post('https://api.jdoodle.com/execute', {
+    script: s,
+    language: l,
+    versionIndex: vI,
+    clientId: jdoodle_clientID,
+    clientSecret: jdoodle_clientSecret
+  })
+  .then((error, response, body) => {
+    console.log('error:', error);
+    console.log('statusCode:', response && response.statusCode);
+    console.log('body:', body);
+  });
+};
+
+const isError = (body) => {
+  return body.slice(0, 10) === '\nTraceback';
+};
+
 // NOTE: Parantheses indicate who would use the specific route (tutor, student, or both!)
+
+router.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 // POST request for new session (tutor)
 router.post('/api/new-session', (req, res) => {
+  console.log('POST: /api/new-session');
+  
   const sessionID = shortid().slice(0,5);
   req.session.ssid = sessionID; // Remember the session ID for tutor!
+
+  console.log()
+
   new Session({
     id: sessionID,
-    desc: req.body.description,
+    name: req.body.name,
+    description: req.body.description,
     submissions: []
   })
   .save()
@@ -36,7 +66,7 @@ router.post('/api/new-session', (req, res) => {
         });
       });
     }
-    res.json({ success: true });
+    res.json({ success: true, sessionID: sessionID, name: req.body.name, description: req.body.description });
   })
   .catch(err => res.json({ success: false, error: err }));
 });
@@ -59,7 +89,11 @@ router.post('/api/new-submission', (req, res) => {
 
 // POST request to submit code (student or tutor)
 router.post('/api/submit-code', (req, res) => {
-  Submission.findOneAndUpdate(req.session.submissionID, { code: req.body.code, state: "submitted" })
+  console.log("POST: /api/submit-code");
+  
+  console.log(req.session);
+  console.log(req.session.submissionID);
+  Submission.findOneAndUpdate(req.session.submissionID, { code: req.body.data["code"], state: "submitted" })
   .then(() => res.json({ success: true }))
   .catch(err => res.json({ success: false, error: err }));
 });

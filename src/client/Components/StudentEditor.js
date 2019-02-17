@@ -114,11 +114,12 @@ export default class StudentEditor extends Component{
       submitCode = () => {
     
         const data = {
-          name: this.state.value,
+          code: this.state.value,
         }
+        console.log(data);
     
         //replace dummy URL w/ Node
-        axios.post(`https://jsonplaceholder.typicode.com/users`, { data })
+        axios.post(`/api/submit-code`, { data })
           .then(res => {
             console.log(res);
             console.log(res.data);
