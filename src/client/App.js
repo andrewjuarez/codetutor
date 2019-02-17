@@ -11,6 +11,8 @@ import Background from './bg.png';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import axios from 'axios';
 
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
 //Components
 import StudentJoinSession from './Components/studentJoinSession'
 
@@ -18,6 +20,23 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
   }
+});
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#33a095',
+      main: '#00897b',
+      dark: '#005f56',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#51b7ae',
+      main: '#26a69a',
+      dark: '#1a746b',
+      contrastText: '#fff',
+    },
+  },
 });
 
 
@@ -36,7 +55,7 @@ class App extends Component {
     return (
         <Grid container style={{ height: '100%'}}>
           <Grid item style={{ position: 'absolute', width: '100%'}}>
-            <Navbar />
+            <MuiThemeProvider theme={theme}><Navbar /></MuiThemeProvider>
           </Grid>
           <Grid container style={{backgroundImage: `url(${Background})`, backgroundSize: 'cover' }} justify="center" alignItems="center">
             <Grid container justify="center" style={{ height: '10%' }}>
