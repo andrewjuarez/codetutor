@@ -106,9 +106,10 @@ export default class StudentEditor extends Component{
         const data = {
           name: this.state.value,
         }
+        console.log(data)
     
         //replace dummy URL w/ Node
-        axios.post(`https://jsonplaceholder.typicode.com/users`, { data })
+        axios.post(`https://api.jdoodle.com/v1/execute`, { data })
           .then(res => {
             console.log(res);
             console.log(res.data);
@@ -123,7 +124,7 @@ export default class StudentEditor extends Component{
           theme: 'monokai',
           mode: 'python',
           enableBasicAutocompletion: false,
-          enableLiveAutocompletion: false,
+          enableLiveAutocompletion: true,
           fontSize: 20,
           showGutter: true,
           showPrintMargin: true,

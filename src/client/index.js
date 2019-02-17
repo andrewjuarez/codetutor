@@ -32,18 +32,11 @@ const theme = createMuiTheme({
 function AppWithTheme() {
   return (
       <Router history={browserHistory}>
-<<<<<<< HEAD
         <MuiThemeProvider muiTheme={theme}>
           <Route exact path = {'/'} component = {App} />
           <Route exact path = {'/create-session'} component = {CreateSession} />
           <Route path = '/studenteditor' component = {StudentEditor} />
           <Route path = '/([0-9]{4})' component = {StudentEditor} />
-=======
-        <MuiThemeProvider>
-            <Route exact path = {'/'} component = {App} />
-            <Route exact path = {'/create-session'} component = {CreateSession} />
-            <Route path = '/([0-9]{4})' component = {StudentEditor} />
->>>>>>> 1f68ce91c87570dbf020d574d7801bb734084b2f
         </MuiThemeProvider>
       </Router>
   );

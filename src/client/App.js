@@ -8,11 +8,9 @@ import Navbar from './Components/Navbar';
 
 import Background from './bg.png';
 
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import axios from 'axios';
-
 //Components
 import StudentJoinSession from './Components/studentJoinSession'
+import aboutDialog from './Components/aboutDialog'
 
 const styles = theme => ({
   button: {
@@ -34,8 +32,8 @@ class App extends Component {
     const { classes } = this.props;
 
     return (
-        <Grid container style={{ height: '100%', border: 'blue solid 4px' }}>
-          <Grid item style={{ position: 'absolute', width: '100%', border: 'yellow solid 4px' }}>
+        <Grid container style={{ height: '100%'}}>
+          <Grid item style={{ position: 'absolute', width: '100%' }}>
             <Navbar />
           </Grid>
           <Grid container style={{ border: 'red solid 4px', backgroundImage: `url(${Background})`, backgroundSize: 'cover' }} justify="center" alignItems="center">
@@ -49,7 +47,9 @@ class App extends Component {
                     OR
                   <hr style={{ width: 150, weight: 10 }} />
                 </Grid>
+                  <aboutDialog/>
                   <StudentJoinSession/>
+                  
               </Grid>
             </Grid>
           </Grid>
