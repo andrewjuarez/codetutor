@@ -34,6 +34,10 @@ const isError = (body) => {
 
 // NOTE: Parantheses indicate who would use the specific route (tutor, student, or both!)
 
+router.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
 // POST request for new session (tutor)
 router.post('/api/new-session', (req, res) => {
   const sessionID = shortid().slice(0,5);

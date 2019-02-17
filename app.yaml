@@ -13,12 +13,4 @@
 #
 # [START runtime]
 runtime: nodejs10
-handlers:
-- url: /api/.*
-  script: auto
-- url: /
-  static_files: dist/index.html
-  upload: dist/index.html
-- url: /
-  static_dir: dist
 # [END runtime]
