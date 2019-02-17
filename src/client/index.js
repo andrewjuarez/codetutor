@@ -32,7 +32,7 @@ const theme = createMuiTheme({
 function AppWithTheme() {
   return (
       <Router history={browserHistory}>
-        <MuiThemeProvider>
+        <MuiThemeProvider theme={theme}>
             <Route exact path = {'/'} component = {App} />
             <Route exact path = {'/create-session'} component = {CreateSession} />
             <Route path = '/([0-9]{4})' component = {StudentEditor} />
