@@ -126,7 +126,9 @@ export default class StudentEditor extends Component{
       submitCode = () => {
     
         const data = {
+          sessionID: this.state.sessionID,
           code: this.state.value,
+          name: this.state.name
         }
         console.log(data);
     
@@ -141,7 +143,10 @@ export default class StudentEditor extends Component{
     
       constructor(props) {
         super(props);
+        
         this.state = {
+          sessionID: this.props.sessionID,
+          name: props.match.params.name,
           value: defaultValue,
           theme: 'monokai',
           mode: 'python',
