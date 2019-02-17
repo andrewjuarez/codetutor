@@ -125,7 +125,7 @@ export default class StudentEditor extends Component{
           theme: 'monokai',
           mode: 'python',
           enableBasicAutocompletion: false,
-          enableLiveAutocompletion: false,
+          enableLiveAutocompletion: true,
           fontSize: 20,
           showGutter: true,
           showPrintMargin: true,
