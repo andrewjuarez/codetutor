@@ -6,6 +6,10 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import { white } from '@material-ui/core/colors';
+import AboutDialog from './AboutDialog';
+
 
 const styles = theme => ({
   root: {
@@ -68,22 +72,13 @@ function SearchAppBar(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-            CodeTutor
-          </Typography>
+          <Link to="/" style={{textDecoration: 'none'}}>
+            <Typography className={classes.title} variant="h6" style={{color:'white'}} noWrap>
+              CodeTutor
+            </Typography>
+          </Link>
           <div className={classes.grow} />
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-            />
-          </div>
+          <AboutDialog/>
         </Toolbar>
       </AppBar>
     </div>

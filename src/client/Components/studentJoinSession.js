@@ -1,4 +1,6 @@
 import React from 'react';
+
+//Dialog stuff
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -7,7 +9,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import axios from 'axios';
-
 import { withRouter } from 'react-router-dom';
 
 class FormDialog extends React.Component {
@@ -78,6 +79,7 @@ class FormDialog extends React.Component {
               margin="dense"
               id="ClassCode"
               label="Class Code"
+              multiline="true"
               value={this.state.ClassCode}
               onChange={this.handleTextFieldChange('ClassCode')}
               fullWidth
@@ -87,6 +89,7 @@ class FormDialog extends React.Component {
               margin="dense"
               id="Name"
               label="Student Name"
+              multiline="true"
               value={this.state.Name}
               onChange={this.handleTextFieldChange('Name')}
               fullWidth
