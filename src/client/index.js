@@ -38,7 +38,6 @@ function AppWithTheme() {
             <Route path = '/([0-9]{4})' component = {StudentEditor} />
         </MuiThemeProvider>
       </Router>
-
   );
 }
 
