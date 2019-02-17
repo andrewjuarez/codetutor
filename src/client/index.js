@@ -34,7 +34,7 @@ function AppWithTheme() {
         <MuiThemeProvider>
             <Route exact path = {'/'} component = {App} />
             <Route exact path = {'/create-session'} component = {CreateSession} />
-            <Route path = '/studenteditor' component = {StudentEditor} />
+            <Route path = '/([0-9]{4})' component = {StudentEditor} />
         </MuiThemeProvider>        
       </Router>
     
