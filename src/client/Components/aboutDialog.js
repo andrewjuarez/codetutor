@@ -22,8 +22,8 @@ class AboutDialog extends React.Component {
  render() {
   return (
    <div>
-    <Button variant="outlined" style={{color:'white'}} onClick={this.handleClickOpen}>
-     Open alert dialog
+    <Button style={{color:'white'}} onClick={this.handleClickOpen}>
+     About Us
     </Button>
     <Dialog
      open={this.state.open}
@@ -34,10 +34,8 @@ class AboutDialog extends React.Component {
      <DialogTitle id="alert-dialog-title">{"Hackers:"}</DialogTitle>
      <DialogContent>
       <DialogContentText id="alert-dialog-description">
-      <p>Andrew Juarez</p>
-      <p>Kevin Nguyen</p>
-      <p>Sahil Railkar</p>
-      <p>Ryan Miranda</p>
+      <p>Andrew Juarez: 4th Year --- Kevin Nguyen: 2nd Year</p>
+      <p>Sahil Railkar: 1st Year --- Ryan Miranda: 1st Year</p>
       
       </DialogContentText>
      </DialogContent>
