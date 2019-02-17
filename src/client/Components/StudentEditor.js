@@ -124,7 +124,8 @@ export default class StudentEditor extends Component{
       }
     
       submitCode = () => {
-    
+        console.log("props:")
+        console.log()
         const data = {
           sessionID: this.state.sessionID,
           code: this.state.value,
@@ -133,20 +134,25 @@ export default class StudentEditor extends Component{
         console.log(data);
     
         //replace dummy URL w/ Node
-        axios.post(`/api/submit-code`, { data })
+        axios.post(`/api/submit-code`, data)
           .then(res => {
             console.log(res);
-            console.log(res.data);
+            if(res.data["status"] == "success"){
+              // Let the user know submission is good and go to home page?
+            } else {
+              // ERROR
+            }
+
+
         })
 
       }
     
       constructor(props) {
         super(props);
-        
-        this.state = {
-          sessionID: this.props.sessionID,
-          name: props.match.params.name,
+          this.state = {
+          sessionID: this.props["match"]["params"]["id"],
+          name: this.props.location.search.split("=")[1],
           value: defaultValue,
           theme: 'monokai',
           mode: 'python',
