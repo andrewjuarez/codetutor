@@ -104,7 +104,8 @@ router.post('/api/submit-code', (req, res) => {
   Submission.create({
     sessionID: req.body.sessionID,
     submitter: req.body.name,
-    code: req.body.code
+    code: req.body.code,
+    state: "submitted"
   }, function(err, submission){
     if(err){
       res.json({status: "error"});
@@ -132,6 +133,17 @@ router.get('/api/all-submissions', (req, res) => {
   .exec()
   .then(({ submissions }) => res.json({ success: true, submissions }))
   .catch(err => res.json({ success: false, error: err }));
+});
+
+router.get('/api/get-prompt', (req, res) => {
+  console.log("POST /api/get-prompt");
+  Session.findOne({id: req.body.id}, function(err, session){
+    if(err){
+      res.json({status: "failure"});
+    } else {
+      res.json({status: "success", prompt: session.id})
+    }
+  })
 });
 
 // Request for a student to join a session
