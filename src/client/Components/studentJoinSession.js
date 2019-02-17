@@ -4,12 +4,17 @@ import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default class FormDialog extends React.Component {
+import axios from 'axios';
+
+import { withRouter } from 'react-router-dom';
+
+class FormDialog extends React.Component {
   state = {
     open: false,
+    ClassCode: '',
+    Name: '',
   };
 
   handleClickOpen = () => {
@@ -22,7 +27,36 @@ export default class FormDialog extends React.Component {
 
   handleSubmit = () =>{
     //SEND STUFF TO BACKEND
+    console.log(this.state.ClassCode )
+    console.log(this.state.Name )
+
+    var data = {
+      classCode: this.state.ClassCode,
+      studName: this.state.Name
+    }
+
+    axios.post("/api/new-session", data)
+        .then((result) => {
+            console.log("API return data!");
+            console.log(result);
+        })
+
+    // if result.thing worked{
+    //   redirect to text editor page with given session ID
+    // }
+      if (true) {
+        this.routeChange('/1234')
+      }
+
     this.setState({ open: false });
+  };
+
+  routeChange = (sessionID) => {
+    this.props.history.push(sessionID);
+  }
+
+  handleTextFieldChange = name => event => {
+    this.setState({ [name]: event.target.value });
   };
 
   render() {
@@ -38,23 +72,26 @@ export default class FormDialog extends React.Component {
         >
           <DialogTitle id="form-dialog-title">Enter Session Info</DialogTitle>
           <DialogContent>
-            {/* <DialogContentText>
-              Enter your session code and name.
-            </DialogContentText> */}
+           
             <TextField
               autoFocus
               margin="dense"
-              id="name"
-              label="Code"
+              id="ClassCode"
+              label="Class Code"
+              value={this.state.ClassCode}
+              onChange={this.handleTextFieldChange('ClassCode')}
               fullWidth
             />
             <TextField
               autoFocus
               margin="dense"
-              id="name"
-              label="Name"
+              id="Name"
+              label="Student Name"
+              value={this.state.Name}
+              onChange={this.handleTextFieldChange('Name')}
               fullWidth
             />
+
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleCancel} color="primary">
@@ -69,3 +106,4 @@ export default class FormDialog extends React.Component {
     );
   }
 }
+export default withRouter(FormDialog)

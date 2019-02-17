@@ -12,7 +12,7 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import axios from 'axios';
 
 //Components
-import StudJoinSess from './Components/studentJoinSession'
+import StudentJoinSession from './Components/studentJoinSession'
 
 const styles = theme => ({
   button: {
@@ -49,7 +49,7 @@ class App extends Component {
                     OR
                   <hr style={{ width: 150, weight: 10 }} />
                 </Grid>
-                  < StudJoinSess/>
+                  <StudentJoinSession/>
               </Grid>
             </Grid>
           </Grid>
