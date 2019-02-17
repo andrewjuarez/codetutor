@@ -5,7 +5,7 @@
   "main": "src/server/index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "npm run build && node src/server/index.js",
+    "start": "npm run build && nodemon --exec babel-node src/server/index.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot --history-api-fallback",
     "server": "nodemon --exec babel-node src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
@@ -28,13 +28,15 @@
     "logger": "0.0.1",
     "material-ui": "^0.20.2",
     "mongoose": "^5.4.13",
+    "morgan": "^1.9.1",
     "prop-types": "^15.7.2",
     "react": "^16.5.2",
     "react-ace": "^6.4.0",
     "react-dom": "^16.5.2",
+    "react-router": "^3.2.1",
     "react-router-dom": "^4.3.1",
-    "shortid": "^2.2.14",
     "request": "^2.88.0",
+    "shortid": "^2.2.14"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

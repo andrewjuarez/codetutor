@@ -10,7 +10,6 @@ import Background from '../bg.png';
 
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import axios from 'axios';
-import "bootstrap/dist/css/bootstrap.min.css";
 import color from '@material-ui/core/colors/blue';
 
 
@@ -25,7 +24,7 @@ class CreateSession extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          sessionID: '', 
+          sessionID: '',
           sessionName: '',
           mailingList: '',
           problem: '',
@@ -39,18 +38,18 @@ class CreateSession extends Component {
 
   handleSessionName(event) {
     this.setState({sessionName: event.target.value});
-  } 
+  }
 
   handleMailingList(event) {
     this.setState({mailingList: event.target.value});
-} 
+}
 
 handleProblem(event) {
   this.setState({problem: event.target.value});
-} 
+}
 
   handleSubmit = (event) => {
-      
+
       event.preventDefault();
 
       var data = {
@@ -62,7 +61,7 @@ handleProblem(event) {
         .then((result) => {
             console.log("API return data!");
             console.log(result);
-            
+
             this.setState({sessionID: result.data["sessionID"]})
             this.setState({sessionName: result.data["sessionName"]});
             this.setState({mailingList: result.data["mailingList"]});

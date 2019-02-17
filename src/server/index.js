@@ -33,12 +33,9 @@ app.use(session({
 // API Routes
 app.use('/', routes);
 
-<<<<<<< HEAD
-app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));
-
 function compile(s, l, vI) {
     const cI = '771d82a586d3f76e15e5c0e7d2d64bce'
-    const cS = '37939d9e0029dafe91ca0c5170059f9f54c65a0cd207a9f15d951e4ba9017d3a' 
+    const cS = '37939d9e0029dafe91ca0c5170059f9f54c65a0cd207a9f15d951e4ba9017d3a'
     const program = {
       script: s,
       language: l,
@@ -57,15 +54,14 @@ function compile(s, l, vI) {
       console.log('body:', body);
     });
   }
-  
+
 function isError(body) {
     if (body.slice(0, 10) === '\nTraceback') {
       return true;
     }
     return false;
 }
-=======
+
 // Start Listening on Server
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Server running at http://${internalIp.v4.sync()}:${port}/`));
->>>>>>> 0b0b07bdea8dc18a7f3e960dbab8367824df00cd

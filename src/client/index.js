@@ -5,7 +5,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import {BrowserRouter as Router, Route, browserHistory} from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { browserHistory } from 'react-router';
 
 //Components
 import StudentEditor from './Components/StudentEditor'
@@ -35,9 +36,9 @@ function AppWithTheme() {
             <Route exact path = {'/'} component = {App} />
             <Route exact path = {'/create-session'} component = {CreateSession} />
             <Route path = '/studenteditor' component = {StudentEditor} />
-        </MuiThemeProvider>        
+        </MuiThemeProvider>
       </Router>
-    
+
   );
 }
 
