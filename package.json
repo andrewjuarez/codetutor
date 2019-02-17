@@ -5,10 +5,11 @@
   "main": "src/server/index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "npm run build && nodemon --exec babel-node src/server/index.js",
+    "start": "npm run build && babel-node src/server/index.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot --history-api-fallback",
     "server": "nodemon --exec babel-node src/server/index.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-prebuild": "npm install --dev"
   },
   "author": "Sandeep Raveesh",
   "license": "ISC",
