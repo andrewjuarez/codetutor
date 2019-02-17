@@ -88,7 +88,7 @@ class CreateSession extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          sessionID: 'value', 
+          sessionID: '', 
           sessionName: '',
           mailingList: '',
           problem: '',
@@ -173,7 +173,7 @@ createSubmissionsTableBody = (students) => {
                 variant="outlined" style={{width: '45%', height: '20%'}}/>
               </div>
               <div className="form-group">
-                  <Button size="large" color="primary" variant="contained" style={{marginTop: '5%'}}>Create Session</Button>
+                  <Button size="large" color="primary" variant="contained" style={{marginTop: '5%'}} onClick={this.handleSubmit}>Create Session</Button>
               </div>
             </form>
           </div>

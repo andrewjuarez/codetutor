@@ -6,6 +6,7 @@ import AceEditor from 'react-ace';
 import 'brace/mode/jsx';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Select from '@material-ui/core/Select';
 
 const languages = [
   'python',
@@ -140,12 +141,13 @@ export default class StudentEditor extends Component{
 
     render() {
     return (
-        <div style={{display: 'flex',  justifyContent:'left', alignItems:'left', height: '50vh'}}>
+        <div className="row" style={{display: 'flex',  justifyContent:'left', alignItems:'left', height: '100%'}}>
           <div className="column">
               <div className="field">
                 <Typography variant="subtitle1" gutterBottom>
                   Language
                 </Typography>
+                <Select children={languages} onChange={this.setMode} value={this.state.mode}></Select>
                 <p className="control">
                   <span className="select">
                     <select name="mode" onChange={this.setMode} value={this.state.mode}>
@@ -278,7 +280,7 @@ export default class StudentEditor extends Component{
               </div>
               <Button variant = 'contained' color = 'primary' onClick = {this.submitCode}>Submit Code</Button>
           </div>
-          <div style={{justifyContent:'right', alignItems:'right'}}>
+          <div className="column" style={{justifyContent:'right', alignItems:'right', marginLeft:'51.75%'}}>
               <AceEditor
               mode={this.state.mode}
               theme={this.state.theme}
