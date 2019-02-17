@@ -26,7 +26,12 @@ import { TableRowColumn } from 'material-ui';
 import { TableRow, TableBody } from '@material-ui/core';
 import { MuiThemeProvider } from 'material-ui/styles';
 import Checkbox from '@material-ui/core/Checkbox';
+import Dialog from '@material-ui/core/Dialog';
+import Snackbar from '@material-ui/core/Snackbar';
 
+import green from '@material-ui/core/colors/green';
+import amber from '@material-ui/core/colors/amber';
+import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 const languages = [
   'python',
@@ -64,6 +69,32 @@ const divStyle = {
   width: '50%',
 };
 
+const styles1 = theme => ({
+  success: {
+    backgroundColor: green[600],
+  },
+  error: {
+    backgroundColor: theme.palette.error.dark,
+  },
+  info: {
+    backgroundColor: theme.palette.primary.dark,
+  },
+  warning: {
+    backgroundColor: amber[700],
+  },
+  icon: {
+    fontSize: 20,
+  },
+  iconVariant: {
+    opacity: 0.9,
+    marginRight: theme.spacing.unit,
+  },
+  message: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+});
+
 languages.forEach(lang => {
   require(`brace/mode/${lang}`);
   require(`brace/snippets/${lang}`);
@@ -76,6 +107,18 @@ themes.forEach(theme => {
 const defaultValue = 'Enter Code Here';
 
 export default class StudentEditor extends Component{
+    state = {
+      snackbarSuccess: false,
+      snackbarError: false
+    }
+
+    onClose() {
+      this.setState({
+        snackbarSuccess: false,
+        snackbarError: false
+      })
+    }
+
     onLoad() {
         console.log("i've loaded");
       }
@@ -139,8 +182,10 @@ export default class StudentEditor extends Component{
             console.log(res);
             if(res.data["status"] == "success"){
               // Let the user know submission is good and go to home page?
+              this.setState({ snackbarSuccess: true });
             } else {
               // ERROR
+              this.setState({ snackbarError: true });
             }
 
 
@@ -160,12 +205,14 @@ export default class StudentEditor extends Component{
           fontSize: 12,
           showGutter: true,
           highlightActiveLine: true,
+
         };
         this.setTheme = this.setTheme.bind(this);
         this.setMode = this.setMode.bind(this);
         this.onChange = this.onChange.bind(this);
         this.setFontSize = this.setFontSize.bind(this);
         this.setBoolean = this.setBoolean.bind(this);
+        this.onClose = this.onClose.bind(this);
       }
 
     render() {
@@ -338,6 +385,35 @@ export default class StudentEditor extends Component{
                     <Button variant = 'contained' color = 'primary' onClick = {this.submitCode}>Submit Code</Button>
                   </p>
                 </div>
+              </TableRowColumn>
+            </TableRow>
+            <TableRow>
+              <TableRowColumn>
+                  {<Snackbar anchorOrigin={{vertical: 'bottom', horizontal: 'left',
+                    }}
+                    open={this.state.snackbarSuccess}
+                    autoHideDuration={6000}
+                    >
+                    <SnackbarContent
+                    variant="success"
+                    message="Submit successful!"
+                    />
+                    </Snackbar>}
+              </TableRowColumn>
+              <TableRowColumn>
+                  {<Snackbar
+                    anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                    }}
+                    open={this.state.snackbarError}
+                    autoHideDuration={6000} onClose={this.onClose}
+                    >
+                    <SnackbarContent
+                    variant="error"
+                    message="There was an error submitting!"
+                    />
+                    </Snackbar>}
               </TableRowColumn>
             </TableRow>
           </TableBody>
