@@ -104,7 +104,7 @@ themes.forEach(theme => {
   require(`brace/theme/${theme}`);
 });
 
-let defaultValue = 'Enter Code Here';  
+let defaultValue = 'print("Hello, world!")';  
 
 export default class TeacherEditor extends Component{
     
