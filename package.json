@@ -5,7 +5,7 @@
   "main": "src/server/index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "npm run build && node src/server/index.js",
+    "start": "npm run build && nodemon --exec babel-node src/server/index.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot --history-api-fallback",
     "server": "nodemon --exec babel-node src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
@@ -32,6 +32,7 @@
     "react": "^16.5.2",
     "react-ace": "^6.4.0",
     "react-dom": "^16.5.2",
+    "react-router": "^3.2.1",
     "react-router-dom": "^4.3.1",
     "request": "^2.88.0",
     "shortid": "^2.2.14",

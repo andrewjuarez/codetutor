@@ -88,7 +88,11 @@ class CreateSession extends Component {
   constructor(props) {
       super(props);
       this.state = {
+<<<<<<< HEAD
           sessionID: 'value', 
+=======
+          sessionID: '',
+>>>>>>> b56e0ba7bd508f896c20d8036ff5e88a41286e8a
           sessionName: '',
           mailingList: '',
           problem: '',
@@ -102,15 +106,15 @@ class CreateSession extends Component {
 
   handleSessionName(event) {
     this.setState({sessionName: event.target.value});
-  } 
+  }
 
   handleMailingList(event) {
     this.setState({mailingList: event.target.value});
-} 
+}
 
 handleProblem(event) {
   this.setState({problem: event.target.value});
-} 
+}
 
 
 createSubmissionsTableBody = (students) => {
@@ -132,7 +136,7 @@ createSubmissionsTableBody = (students) => {
 
 
   handleSubmit = (event) => {
-      
+
       event.preventDefault();
 
       var data = {
@@ -144,7 +148,7 @@ createSubmissionsTableBody = (students) => {
         .then((result) => {
             console.log("API return data!");
             console.log(result);
-            
+
             this.setState({sessionID: result.data["sessionID"]})
             this.setState({sessionName: result.data["sessionName"]});
             this.setState({mailingList: result.data["mailingList"]});

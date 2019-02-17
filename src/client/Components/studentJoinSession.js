@@ -78,6 +78,7 @@ class FormDialog extends React.Component {
               margin="dense"
               id="ClassCode"
               label="Class Code"
+              multiline="true"
               value={this.state.ClassCode}
               onChange={this.handleTextFieldChange('ClassCode')}
               fullWidth
@@ -87,6 +88,7 @@ class FormDialog extends React.Component {
               margin="dense"
               id="Name"
               label="Student Name"
+              multiline="true"
               value={this.state.Name}
               onChange={this.handleTextFieldChange('Name')}
               fullWidth
