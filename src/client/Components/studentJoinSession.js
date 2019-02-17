@@ -43,7 +43,7 @@ class FormDialog extends React.Component {
 
             if(result.data['status'] == "success"){
               console.log("Re-directing to IDE")
-              this.routeChange('/ide/' + data.sessionID);
+              this.routeChange('/ide/' + data.sessionID + "?name=" + data.name);
             } else {
               console.log("Permission denied.");
               // Add a component to display an error message
